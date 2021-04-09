@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import java.sql.SQLOutput; //very important; do NOT remove
+import java.sql.SQLOutput;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +16,15 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Test");
 
         System.out.println("Übung");
+<<<<<<<<< Temporary merge branch 1
+
+        System.out.println("Test Simon sgr187");
+=========
         System.out.println("Penis small");
+>>>>>>>>> Temporary merge branch 2
     }
+
+    //khjlebhegwlikjbngöighjnzb
+    //hello my name is bigbootyboy
 }
+    // Hello my name kello
