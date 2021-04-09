@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println("Übung");
 
-        System.out.println("Test Simon sgr");
+        System.out.println("Test Simon sgr187");
     }
 
     //khjlebhegwlikjbngöighjnzb
