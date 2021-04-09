@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println("Test Simon sgr187");
         System.out.println("Penis small");
+        System.out.println("Richtige Reihenfolge");
     }
 
     //khjlebhegwlikjbngöighjnzb
