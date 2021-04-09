@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import java.sql.SQLOutput;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Übung");
 
         System.out.println("Test Simon sgr187");
+        System.out.println("Penis small");
     }
 
     //khjlebhegwlikjbngöighjnzb
