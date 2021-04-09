@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import java.sql.SQLOutput;
+import java.sql.SQLOutput; //very important; do NOT remove
 
 public class MainActivity extends AppCompatActivity {
 
