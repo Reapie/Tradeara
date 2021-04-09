@@ -16,12 +16,10 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Test");
 
         System.out.println("Übung");
-<<<<<<<<< Temporary merge branch 1
 
         System.out.println("Test Simon sgr187");
-=========
         System.out.println("Penis small");
->>>>>>>>> Temporary merge branch 2
+        System.out.println("Richtige Reihenfolge");
     }
 
     //khjlebhegwlikjbngöighjnzb
