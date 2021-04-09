@@ -3,5 +3,4 @@
 
 - Simulierte Aktienhandel App ohne Server
 - Lädt die Aktienkurse über Yahoo-Finance
-
-gehionuoijnhewnjogkew
+- Test
