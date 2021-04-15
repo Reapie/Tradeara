@@ -7,24 +7,29 @@
         android:id="@+id/tvNameStock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_margin="5sp"
+        android:text="Tesla, Inc." />
 
     <TextView
         android:id="@+id/tvPriceStock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvNameStock"
-        android:text="TextView" />
+        android:layout_margin="5sp"
+        android:text="620,00 EUR" />
 
     <TextView
         android:id="@+id/tvSymbolStock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_toRightOf="@id/tvNameStock"
+        android:text="TSLA" />
 
     <TextView
         android:id="@+id/tvDiffStock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_below="@id/tvPriceStock"
+        android:layout_margin="5sp"
+        android:text="-31,89 (4,82%) " />
 </RelativeLayout>
