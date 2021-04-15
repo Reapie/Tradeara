@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.accounts.Account;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,14 +37,15 @@ public class MainActivity extends AppCompatActivity {
     private Fragment accountFragment = new AccountFragment();
     private Fragment bookFragment = new BookFragment();
 
-    private TextView tvCash;
 
+    private TextView tvCash;
+    private FloatingActionButton fabLogo;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FloatingActionButton fabLogo = findViewById(R.id.fabLogo);
+        fabLogo = findViewById(R.id.fabLogo);
         tvCash = findViewById(R.id.tvCash);
 
         makeCurrentFragment(homeFragment);
@@ -70,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
-        // OnClickListener Floating Action Button
 
         fabLogo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,24 +83,25 @@ public class MainActivity extends AppCompatActivity {
         tvCash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Onclick für Profil", Toast.LENGTH_SHORT).show();
+                makeCurrentFragment(depotFragment);
             }
         });
 
     }
 
     public void makeCurrentFragment(Fragment fragment) {
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fl_wrapper, fragment)
+                .addToBackStack(null)
                 .commit();
+
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-
-        
-        makeCurrentFragment(homeFragment);
+        FragmentManager fragments = getSupportFragmentManager();
+        fragments.popBackStack();
     }
 }
