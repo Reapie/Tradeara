@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Übung");
 
         System.out.println("Test Simon sgr187");
-        System.out.println("Penis small");
+        System.out.println("Dab mal");
         System.out.println("Richtige Reihenfolge");
     }
 
