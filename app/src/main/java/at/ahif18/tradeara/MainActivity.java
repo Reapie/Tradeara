@@ -41,8 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FloatingActionButton fabT = findViewById(R.id.fabT);
-        FloatingActionButton fabCash = findViewById(R.id.fabCash);
-
+       
         makeCurrentFragment(homeFragment);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.ic_home);
@@ -75,13 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Simon der Jude soll mir mal Geld geben /paypalme.MxnuR", Toast.LENGTH_SHORT).show();
             }
         });
-        fabCash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Simon der Jude soll mir noch immer das Geld überweisen der Hund", Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
     public void makeCurrentFragment(Fragment fragment) {
