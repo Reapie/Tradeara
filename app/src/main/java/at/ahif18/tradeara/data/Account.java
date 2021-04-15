@@ -20,8 +20,7 @@ public class Account {
         }else if(stocks.get(stock) - amount == 0){
             stocks.remove(stock);
         }else{
-            System.out.println("Stock nicht vorhanden");
+            System.out.println("Error");
         }
-
     }
 }
