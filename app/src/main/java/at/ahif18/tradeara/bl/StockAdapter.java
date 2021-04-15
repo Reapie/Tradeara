@@ -45,7 +45,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
         holder.getTvPriceStock().setText(stock.getFormattedPrice());
         holder.getTvSymbolStock().setText(stock.getSymbol());
 
-        holder.getTvDiffStock().setText(stock.getDiff() + "");
+        holder.getTvDiffStock().setText(String.format("%s", stock.getDiff()));
         holder.getTvDiffStock().setTextColor(stock.getDiff() < 0 ? Color.RED : Color.GREEN);
     }
 
