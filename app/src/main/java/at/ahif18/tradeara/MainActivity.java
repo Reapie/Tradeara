@@ -37,13 +37,13 @@ public class MainActivity extends AppCompatActivity {
     private Fragment bookFragment = new BookFragment();
 
     private TextView tvCash;
-
+    private FloatingActionButton fabLogo ;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FloatingActionButton fabLogo = findViewById(R.id.fabLogo);
+        fabLogo = findViewById(R.id.fabLogo);
         tvCash = findViewById(R.id.tvCash);
 
         makeCurrentFragment(homeFragment);
