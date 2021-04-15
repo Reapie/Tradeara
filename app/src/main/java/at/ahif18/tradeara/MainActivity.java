@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.ic_home:
                     makeCurrentFragment(homeFragment);
+                    return true;
                 case R.id.ic_account:
                     makeCurrentFragment(accountFragment);
                     return true;
