@@ -21,6 +21,8 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
             new Stock("David", 24.24)
     );
 
+    //private List<Stock> stocks = StockGetter.getStocks("INTC","TSLA");
+
     @NonNull
     @Override
     public StockHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

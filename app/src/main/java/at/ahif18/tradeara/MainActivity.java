@@ -25,6 +25,5 @@ public class MainActivity extends AppCompatActivity {
         rvStock.setLayoutManager(new LinearLayoutManager(this));
         rvStock.setAdapter(new StockAdapter());
 
-        getStocks("INTC", "TSLA");
     }
 }

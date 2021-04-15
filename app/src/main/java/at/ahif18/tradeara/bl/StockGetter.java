@@ -21,7 +21,7 @@ public class StockGetter {
             }
             for (String s : stocksM.keySet()) {
                 stocks.add(stocksM.get(s));
-                System.out.println(stocksM.get(s).getQuote().getPrice());
+                //System.out.println(stocksM.get(s).getQuote().getPrice());
             }
         }, "Stock Getter");
         t.start();
