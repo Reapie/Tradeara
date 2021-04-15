@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment accountFragment = new AccountFragment();
     private Fragment bookFragment = new BookFragment();
 
-   
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
