@@ -53,6 +53,8 @@ public class HomeFragment extends Fragment {
         return fragment;
     }
 
+
+
     private RecyclerView rvStockItem;
 
     @Override
