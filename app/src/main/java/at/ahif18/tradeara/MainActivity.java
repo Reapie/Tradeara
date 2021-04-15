@@ -21,20 +21,22 @@ import at.ahif18.tradeara.fragments.BookFragment;
 import at.ahif18.tradeara.fragments.DepotFragment;
 import at.ahif18.tradeara.fragments.HomeFragment;
 import at.ahif18.tradeara.fragments.SearchFragment;
+import yahoofinance.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Fragment searchFragment = new SearchFragment();
+    private Fragment depotFragment = new DepotFragment();
+    private Fragment homeFragment = new HomeFragment(this);
+    private Fragment accountFragment = new AccountFragment();
+    private Fragment bookFragment = new BookFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Fragment searchFragment = new SearchFragment();
-        Fragment depotFragment = new DepotFragment();
-        Fragment homeFragment = new HomeFragment();
-        Fragment accountFragment = new AccountFragment();
-        Fragment bookFragment = new BookFragment();
+
 
         makeCurrentFragment(homeFragment);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -62,11 +64,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void makeCurrentFragment(Fragment fragment) {
+    public void makeCurrentFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fl_wrapper, fragment)
                 .commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        
+        makeCurrentFragment(homeFragment);
+    }
 }

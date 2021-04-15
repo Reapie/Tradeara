@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Arrays;
 import java.util.List;
 
+import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.data.Stock;
 
@@ -22,6 +23,11 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
             new Stock("Simon", "SMN",25.26, 24.24),
             new Stock("David", "DVD", 24.24, -25.24)
     );
+    private MainActivity mainActivity;
+
+    public StockAdapter(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
+    }
 
     //private List<Stock> stocks = StockGetter.getStocks("INTC","TSLA");
     //float price = stocks.get(0).getQuote().getPrice() Preis kann andere währung haben
@@ -35,7 +41,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
         TextView tvPriceStock = view.findViewById(R.id.tvPriceStock);
         TextView tvSymbolStock = view.findViewById(R.id.tvSymbolStock);
         TextView tvDiffStock = view.findViewById(R.id.tvDiffStock);
-        return new StockHolder(view, tvNameStock, tvPriceStock, tvSymbolStock, tvDiffStock);
+        return new StockHolder(view, tvNameStock, tvPriceStock, tvSymbolStock, tvDiffStock, mainActivity);
     }
 
     @Override
