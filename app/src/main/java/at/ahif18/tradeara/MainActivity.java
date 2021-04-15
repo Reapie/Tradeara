@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.accounts.Account;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import at.ahif18.tradeara.R;
+import at.ahif18.tradeara.bl.StockAdapter;
 import at.ahif18.tradeara.fragments.AccountFragment;
 import at.ahif18.tradeara.fragments.BookFragment;
 import at.ahif18.tradeara.fragments.DepotFragment;
@@ -21,10 +24,18 @@ import at.ahif18.tradeara.fragments.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    private RecyclerView rvStock;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        rvStock = findViewById(R.id.rvStock);
+        rvStock.setHasFixedSize(true);
+
+        rvStock.setLayoutManager(new LinearLayoutManager(this));
+        rvStock.setAdapter(new StockAdapter());
 
         Fragment searchFragment = new SearchFragment();
         Fragment depotFragment = new DepotFragment();
