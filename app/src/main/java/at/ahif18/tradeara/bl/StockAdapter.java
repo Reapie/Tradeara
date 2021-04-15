@@ -22,7 +22,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
     );
 
     //private List<Stock> stocks = StockGetter.getStocks("INTC","TSLA");
-    //float price = stocks.get(0).getQuote().getPrice()
+    //float price = stocks.get(0).getQuote().getPrice() Preis kann andere währung haben
 
     @NonNull
     @Override
