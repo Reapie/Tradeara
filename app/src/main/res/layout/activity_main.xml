@@ -7,11 +7,40 @@
     android:backgroundTint="#FFFFFF"
     tools:context="at.ahif18.tradeara.MainActivity">
 
+        <!-- Toolbar -->
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbLogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:background="@drawable/toolbar_background"
+        android:elevation="5dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:textAlignment="center"/>
+
+        <!-- FloatingActionButton -->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabT"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_alignParentRight="true"
+        android:backgroundTint="@color/white"
+        android:clickable="true"
+        app:srcCompat="@drawable/t" />
+
+    <!-- FrameLayout -->
+
     <FrameLayout
         android:id="@+id/fl_wrapper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="674dp"
+        android:layout_below="@+id/tbLogo"
         android:background="#F6F3F3" />
+
+    <!-- BottomNavigation -->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -23,7 +52,6 @@
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
         app:menu="@menu/nav_menu" />
-
 </RelativeLayout>
 
     
