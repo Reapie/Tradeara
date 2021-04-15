@@ -20,7 +20,9 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
 
     private List<Stock> stocks = Arrays.asList(
             new Stock("Simon", "SMN",25.26, 24.24),
-            new Stock("David", "DVD", 24.24, -25.24)
+            new Stock("David", "DVD", 24.24, -25.24),
+            new Stock("Manu", "MXN", 26.24, -20.24),
+            new Stock("Martin", "MAN", 30.24, -10.24)
     );
 
     //private List<Stock> stocks = StockGetter.getStocks("INTC","TSLA");
