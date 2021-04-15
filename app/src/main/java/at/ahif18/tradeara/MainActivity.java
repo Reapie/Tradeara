@@ -5,12 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 
-import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.bl.StockAdapter;
 
-import static at.ahif18.tradeara.StockGetter.getStocks;
+import static at.ahif18.tradeara.bl.StockGetter.getStocks;
 
 public class MainActivity extends AppCompatActivity {
 
