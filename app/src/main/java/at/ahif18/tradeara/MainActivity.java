@@ -12,6 +12,7 @@ import android.accounts.Account;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -35,16 +36,15 @@ public class MainActivity extends AppCompatActivity {
     private Fragment accountFragment = new AccountFragment();
     private Fragment bookFragment = new BookFragment();
 
-
+    private TextView tvCash;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FloatingActionButton fabT = findViewById(R.id.fabT);
-        Toolbar toolbar = findViewById(R.id.main_toolbar);
-        setActionBar(toolbar);
 
+        FloatingActionButton fabLogo = findViewById(R.id.fabLogo);
+        tvCash = findViewById(R.id.tvCash);
 
         makeCurrentFragment(homeFragment);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -72,12 +72,20 @@ public class MainActivity extends AppCompatActivity {
         });
         // OnClickListener Floating Action Button
 
-        fabT.setOnClickListener(new View.OnClickListener() {
+        fabLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Simon der Jude soll mir mal Geld geben /paypalme.MxnuR", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Onclick für Logo", Toast.LENGTH_SHORT).show();
             }
         });
+
+        tvCash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Onclick für Profil", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     public void makeCurrentFragment(Fragment fragment) {

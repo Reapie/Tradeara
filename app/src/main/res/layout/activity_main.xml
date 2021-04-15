@@ -11,7 +11,7 @@
 
     <!-- Textview -->
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvCash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -25,12 +25,10 @@
         android:textSize="30sp"
         android:visibility="visible" />
 
-
-
     <!-- FloatingActionButton Logo -->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabT"
+        android:id="@+id/fabLogo"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_alignParentRight="true"
@@ -51,7 +49,7 @@
         android:id="@+id/fl_wrapper"
         android:layout_width="match_parent"
         android:layout_height="674dp"
-        android:layout_below="@id/fabT"
+        android:layout_below="@id/fabLogo"
         android:background="#F6F3F3"
         android:backgroundTint="@color/white"
         />
