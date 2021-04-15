@@ -30,6 +30,7 @@ public class StockHolder extends RecyclerView.ViewHolder {
 
     public TextView getTvSymbolStock() {
         return tvSymbolStock;
+
     }
 
     public TextView getTvDiffStock() {
