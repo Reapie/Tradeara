@@ -23,7 +23,9 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
             new Stock("Simon", "SMN",25.26, 24.24),
             new Stock("David", "DVD", 24.24, -25.24),
             new Stock("Manu", "MXN", 26.24, -20.24),
-            new Stock("Martin", "MAN", 30.24, -10.24)
+            new Stock("Martin", "MAN", 30.24, -10.24),
+            new Stock("Bene", "BNN", 150.88, 151.2),
+            new Stock("Schmidl", "SMD", 3.88, -5.23)
     );
     private MainActivity mainActivity;
 

@@ -6,7 +6,8 @@
     tools:context=".fragments.HomeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvStockItem"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        android:id="@+id/rvStockItem"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="70dp" />
     </RelativeLayout>
