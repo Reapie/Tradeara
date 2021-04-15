@@ -11,8 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.accounts.Account;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.bl.StockAdapter;
@@ -33,12 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        FloatingActionButton fab = findViewById(R.id.fabT);
 
         makeCurrentFragment(homeFragment);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -64,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Simon der Jude soll mir mal Geld geben /paypalme.MxnuR", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 
     public void makeCurrentFragment(Fragment fragment) {

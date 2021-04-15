@@ -12,7 +12,6 @@
         android:drawableLeft="@drawable/ic_account"
         android:fontFamily="sans-serif"
         android:text="0 €"
-
         android:textSize="24sp" />
 
 </android.support.v7.widget.Toolbar>

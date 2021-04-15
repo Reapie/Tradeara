@@ -9,6 +9,7 @@
 
         <!-- Toolbar -->
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tbLogo"
         android:layout_width="match_parent"
@@ -18,7 +19,8 @@
         android:elevation="5dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        />
 
         <!-- FloatingActionButton -->
 
@@ -29,7 +31,8 @@
         android:layout_alignParentRight="true"
         android:backgroundTint="@color/white"
         android:clickable="true"
-        border
+        app:fabSize="auto"
+
         app:srcCompat="@drawable/logo" />
 
     <!-- FrameLayout -->
