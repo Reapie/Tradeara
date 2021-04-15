@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         makeCurrentFragment(homeFragment);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.ic_home);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.ic_home:
                     makeCurrentFragment(homeFragment);
+                    return true;
                 case R.id.ic_account:
                     makeCurrentFragment(accountFragment);
                     return true;
