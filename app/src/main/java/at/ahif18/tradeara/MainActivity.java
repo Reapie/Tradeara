@@ -12,17 +12,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        System.out.println("Test");
-
-        System.out.println("Übung");
-
-        System.out.println("Test Simon sgr187");
-        System.out.println("Dab mal");
-        System.out.println("Richtige Reihenfolge");
     }
-
-    //khjlebhegwlikjbngöighjnzb
-    //hello my name is bigbootyboy
 }
-    // Hello my name kello
