@@ -22,6 +22,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
     );
 
     //private List<Stock> stocks = StockGetter.getStocks("INTC","TSLA");
+    //float price = stocks.get(0).getQuote().getPrice()
 
     @NonNull
     @Override

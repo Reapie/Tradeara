@@ -8,8 +8,6 @@ import android.os.Bundle;
 
 import at.ahif18.tradeara.bl.StockAdapter;
 
-import static at.ahif18.tradeara.bl.StockGetter.getStocks;
-
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rvStock;
