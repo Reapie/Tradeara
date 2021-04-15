@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Tradeara</string>
+    <string name="book">Book</string>
+    <string name="account">Account</string>
+    <string name="home">Home</string>
+    <string name="graph">Graph</string>
+    <string name="search">Search</string>
 </resources>
