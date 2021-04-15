@@ -7,6 +7,8 @@ import android.view.MenuItem;
 
 import at.ahif18.tradeara.R;
 
+import static at.ahif18.tradeara.StockGetter.getStocks;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -14,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getStocks("INTC", "TSLA");
 
     }
 }
