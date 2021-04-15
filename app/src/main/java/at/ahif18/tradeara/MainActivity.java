@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import at.ahif18.tradeara.bl.StockAdapter;
+import yahoofinance.Stock;
+
+import static at.ahif18.tradeara.bl.StockGetter.getStocks;
 
 public class MainActivity extends AppCompatActivity {
 
