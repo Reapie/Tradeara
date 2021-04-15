@@ -21,6 +21,9 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
             new Stock("David", 24.24)
     );
 
+    //private List<Stock> stocks = StockGetter.getStocks("INTC","TSLA");
+    //float price = stocks.get(0).getQuote().getPrice() Preis kann andere währung haben
+
     @NonNull
     @Override
     public StockHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
