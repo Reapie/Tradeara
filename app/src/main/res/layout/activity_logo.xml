@@ -5,14 +5,14 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/ivT"
+        android:id="@+id/ivLogo"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_marginTop="10px"
         android:layout_marginRight="50px"
-        app:srcCompat="@drawable/t" />
+        android:layout_alignParentRight="true"
+        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/tvDeposit"
