@@ -6,4 +6,8 @@
     <string name="graph">Graph</string>
     <string name="search">Search</string>
     <string name="depot">Depot</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="buy">Buy</string>
+    <string name="sell">Sell</string>
 </resources>
