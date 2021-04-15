@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.accounts.Account;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -72,13 +74,14 @@ public class MainActivity extends AppCompatActivity {
         fabT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Simon der Jude soll mir mal Geld geben /paypalme.MxnuR", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Reapie/Tradeara"));
+                startActivity(i);
             }
         });
         fabCash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Simon der Jude soll mir noch immer das Geld überweisen der Hund", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "ok cool", Toast.LENGTH_SHORT).show();
             }
         });
 
