@@ -9,12 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.accounts.Account;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -43,7 +42,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FloatingActionButton fabT = findViewById(R.id.fabT);
-        FloatingActionButton fabCash = findViewById(R.id.fabCash);
+        Toolbar toolbar = findViewById(R.id.main_toolbar);
+        setActionBar(toolbar);
+
 
         makeCurrentFragment(homeFragment);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -74,17 +75,9 @@ public class MainActivity extends AppCompatActivity {
         fabT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Reapie/Tradeara"));
-                startActivity(i);
+                Toast.makeText(MainActivity.this, "Simon der Jude soll mir mal Geld geben /paypalme.MxnuR", Toast.LENGTH_SHORT).show();
             }
         });
-        fabCash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "ok cool", Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
     public void makeCurrentFragment(Fragment fragment) {
