@@ -54,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
-
-
     }
 
     private void makeCurrentFragment(Fragment fragment) {
@@ -64,4 +62,5 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fl_wrapper, fragment)
                 .commit();
     }
+
 }
