@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tLBuySell"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.BuySellFragment" >
+    tools:context=".fragments.BuySellFragment">
 
     <TableLayout
         android:layout_width="match_parent"
@@ -11,7 +13,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/btnSell"
@@ -21,8 +23,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corners"
-                android:backgroundTint="#00FF0A"
-                android:text="@string/sell" />
+                android:backgroundTint="#14B61A"
+                android:text="@string/buy" />
 
             <Button
                 android:id="@+id/btnBuy"
@@ -33,8 +35,8 @@
                 android:layout_marginEnd="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corners"
-                android:backgroundTint="#FF0000"
-                android:text="@string/buy" />
+                android:backgroundTint="#D51212"
+                android:text="@string/sell" />
         </TableRow>
 
     </TableLayout>

@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 makeCurrentFragment(depotFragment);
+                bottomNavigationView.setSelectedItemId(R.id.ic_depot);
             }
         });
 
