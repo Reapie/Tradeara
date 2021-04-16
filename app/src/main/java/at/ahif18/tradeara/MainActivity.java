@@ -9,9 +9,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.accounts.Account;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +22,10 @@ import android.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.bl.StockAdapter;
@@ -37,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment accountFragment = new AccountFragment();
     private Fragment bookFragment = new BookFragment();
 
+    private List<Fragment> mainFragments;
 
     private TextView tvCash;
     private FloatingActionButton fabLogo;
@@ -45,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mainFragments = Arrays.asList(searchFragment, depotFragment, homeFragment, accountFragment, bookFragment);
         fabLogo = findViewById(R.id.fabLogo);
         tvCash = findViewById(R.id.tvCash);
 
@@ -90,18 +99,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void makeCurrentFragment(Fragment fragment) {
-
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fl_wrapper, fragment)
                 .addToBackStack(null)
                 .commit();
-
     }
 
     @Override
     public void onBackPressed() {
-        FragmentManager fragments = getSupportFragmentManager();
-        fragments.popBackStack();
+        if(!mainFragments.contains(currentActiveFragment())){
+            FragmentManager fragments = getSupportFragmentManager();
+            fragments.popBackStack();
+        }
+    }
+
+    public Fragment currentActiveFragment(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        List<Fragment> fragments = fragmentManager.getFragments();
+
+        for (Fragment fragment: fragments) {
+            if(fragment != null && fragment.isVisible()){
+                return fragment;
+            }
+        }
+
+        return null;
     }
 }

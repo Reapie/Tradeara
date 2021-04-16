@@ -63,4 +63,8 @@ public class BuySellFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_buy_sell, container, false);
     }
+
+    public boolean allowBackPress(){
+        return true;
+    }
 }
