@@ -80,7 +80,7 @@ public class SearchFragment extends Fragment {
         StockAdapter stockAdapter = new StockAdapter(mainActivity);
 
         rvListSearchStock.setAdapter(stockAdapter);
-        return inflater.inflate(R.layout.fragment_search, container, false);
+        return view;
     }
 
 }
