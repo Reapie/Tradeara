@@ -77,7 +77,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
         } else {
             stocks = stocks
                     .stream()
-                    .filter(stock -> stock.getName()
+                    .filter(stock -> (stock.getName()+stock.getSymbol())
                             .toLowerCase()
                             .contains(s.toLowerCase()))
                     .collect(Collectors.toList());
