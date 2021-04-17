@@ -1,12 +1,23 @@
 package at.ahif18.tradeara.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+
+import java.util.ArrayList;
 
 import at.ahif18.tradeara.R;
 
@@ -17,8 +28,12 @@ import at.ahif18.tradeara.R;
  */
 public class DepotFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static String TAG = "DepotFragment";
+
+    private float[] yData = {40.0f, 15.0f, 65.0f};
+    private String[] xData = {"SMN", "DVD", "MXN"};
+    private PieChart pieChart;
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -61,6 +76,47 @@ public class DepotFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_depot, container, false);
+        View view = inflater.inflate(R.layout.fragment_depot, container, false);
+        pieChart = view.findViewById(R.id.pieChart);
+
+        Description description = new Description();
+        description.setText("");
+        pieChart.setDescription(description);
+
+        pieChart.setRotationEnabled(true);
+        pieChart.setHoleRadius(25f);
+        pieChart.setTransparentCircleAlpha(0);
+        pieChart.setDrawEntryLabels(true);
+
+        addDataSet();
+
+        return view;
+    }
+
+    private void addDataSet() {
+        ArrayList<PieEntry> yEntrys = new ArrayList();
+        ArrayList<String> xEntrys = new ArrayList();
+
+
+        for(int i = 0; i < yData.length; i++){
+            yEntrys.add(new PieEntry(yData[i], i));
+        }
+
+        for(int i = 1; i < xData.length; i++){
+            xEntrys.add(xData[i]);
+        }
+
+        PieDataSet pieDataSet = new PieDataSet(yEntrys, "");
+        pieDataSet.setSliceSpace(2);
+        pieDataSet.setValueTextSize(12);
+
+        PieData pieData = new PieData(pieDataSet);
+        pieChart.setData(pieData);
+
+        Legend l = pieChart.getLegend();
+        l.setEnabled(false);
+
+        pieChart.invalidate();
+
     }
 }
