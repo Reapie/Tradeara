@@ -30,6 +30,7 @@ import java.util.List;
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.bl.StockAdapter;
 import at.ahif18.tradeara.bl.StockGetter;
+import at.ahif18.tradeara.data.Stock;
 import at.ahif18.tradeara.fragments.AccountFragment;
 import at.ahif18.tradeara.fragments.BookFragment;
 import at.ahif18.tradeara.fragments.DepotFragment;
@@ -128,4 +129,5 @@ public class MainActivity extends AppCompatActivity {
 
         return null;
     }
+
 }
