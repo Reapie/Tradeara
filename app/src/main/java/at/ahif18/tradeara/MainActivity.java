@@ -84,19 +84,11 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
-        fabLogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Onclick für Logo", Toast.LENGTH_SHORT).show();
-            }
-        });
+        fabLogo.setOnClickListener(v -> Toast.makeText(MainActivity.this, "Onclick für Logo", Toast.LENGTH_SHORT).show());
 
-        tvCash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                makeCurrentFragment(depotFragment);
-                bottomNavigationView.setSelectedItemId(R.id.ic_depot);
-            }
+        tvCash.setOnClickListener(v -> {
+            makeCurrentFragment(depotFragment);
+            bottomNavigationView.setSelectedItemId(R.id.ic_depot);
         });
 
     }
