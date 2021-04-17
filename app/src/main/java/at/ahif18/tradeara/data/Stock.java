@@ -1,5 +1,7 @@
 package at.ahif18.tradeara.data;
 
+import at.ahif18.tradeara.bl.StockGetter;
+
 public class Stock {
     private String name;
     private String symbol;

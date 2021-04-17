@@ -29,6 +29,7 @@ import java.util.List;
 
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.bl.StockAdapter;
+import at.ahif18.tradeara.bl.StockGetter;
 import at.ahif18.tradeara.fragments.AccountFragment;
 import at.ahif18.tradeara.fragments.BookFragment;
 import at.ahif18.tradeara.fragments.DepotFragment;
@@ -38,7 +39,7 @@ import yahoofinance.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Fragment searchFragment = new SearchFragment();
+    private Fragment searchFragment = new SearchFragment(this);
     private Fragment depotFragment = new DepotFragment();
     private Fragment homeFragment = new HomeFragment(this);
     private Fragment accountFragment = new AccountFragment();

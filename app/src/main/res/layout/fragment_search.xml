@@ -10,4 +10,17 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:text="@string/search" />
-    </RelativeLayout>
+
+    <SearchView
+        android:id="@+id/svSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </SearchView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvStockSearchItem"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/svSearch" />
+</RelativeLayout>
