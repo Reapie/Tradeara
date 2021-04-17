@@ -10,8 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
@@ -20,6 +22,7 @@ import at.ahif18.tradeara.data.Stock;
 public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
 
     private List<Stock> stocks;
+    private List<Stock> stocksAll;
     private MainActivity mainActivity;
 
     public StockAdapter(MainActivity mainActivity) {
@@ -33,6 +36,8 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
                 new Stock("Bene", "BNN", 150.88, 151.2),
                 new Stock("Schmidl", "SMD", 3.88, -5.23)
         );
+
+        stocksAll = new ArrayList<>(stocks);
     }
 
     //private List<Stock> stocks = StockGetter.getStocks("INTC","TSLA");
@@ -65,4 +70,19 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
     public int getItemCount() {
         return stocks.size();
     }
+
+    public void filter (String s){
+        if (s.isEmpty()){
+            stocks = new ArrayList<>(stocksAll);
+        } else {
+            stocks = stocks
+                    .stream()
+                    .filter(stock -> stock.getName()
+                            .toLowerCase()
+                            .contains(s.toLowerCase()))
+                    .collect(Collectors.toList());
+        }
+        notifyDataSetChanged();
+    }
+
 }

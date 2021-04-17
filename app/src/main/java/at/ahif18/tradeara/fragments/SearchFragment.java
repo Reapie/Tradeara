@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
@@ -64,6 +65,7 @@ public class SearchFragment extends Fragment {
     }
 
     private RecyclerView rvListSearchStock;
+    private SearchView svSearch;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,12 +76,26 @@ public class SearchFragment extends Fragment {
 
         rvListSearchStock = view.findViewById(R.id.rvStockSearchItem);
         rvListSearchStock.setHasFixedSize(true);
-
         rvListSearchStock.setLayoutManager(new LinearLayoutManager(mainActivity));
 
         StockAdapter stockAdapter = new StockAdapter(mainActivity);
-
         rvListSearchStock.setAdapter(stockAdapter);
+
+        svSearch = view.findViewById(R.id.svSearch);
+
+        svSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                stockAdapter.filter(newText);
+                return false;
+            }
+        });
+
         return view;
     }
 
