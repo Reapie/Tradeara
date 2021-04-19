@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tLBuySell"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.BuySellFragment">
@@ -23,7 +22,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corners"
-                android:backgroundTint="#14B61A"
+                android:backgroundTint="#09AA44"
                 android:text="@string/buy" />
 
             <Button

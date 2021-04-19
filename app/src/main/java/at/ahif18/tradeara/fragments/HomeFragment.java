@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment {
     private String mParam2;
     private static MainActivity mainActivity;
 
+
     public HomeFragment(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
     }
@@ -64,7 +65,6 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override

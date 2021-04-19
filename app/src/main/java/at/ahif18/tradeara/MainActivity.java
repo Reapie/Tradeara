@@ -21,6 +21,7 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -119,6 +120,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return null;
+    }
+
+    public void buySellBottomDialog(){
+        // im test
+        View view = getLayoutInflater().inflate(R.layout.fragment_buy_sell, null);
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog.show();
     }
 
 }

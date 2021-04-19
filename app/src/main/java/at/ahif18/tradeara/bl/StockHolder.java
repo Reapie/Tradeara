@@ -1,11 +1,15 @@
 package at.ahif18.tradeara.bl;
 
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
@@ -48,8 +52,9 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        Fragment buySellFragment = new BuySellFragment();
+        //mainActivity.buySellBottomDialog();
+       Fragment buySellFragment = new BuySellFragment();
 
-        mainActivity.makeCurrentFragment(buySellFragment);
+       mainActivity.makeCurrentFragment(buySellFragment);
     }
 }
