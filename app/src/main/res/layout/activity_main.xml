@@ -58,7 +58,6 @@
         android:background="#F6F3F3"
         android:backgroundTint="@color/white" />
 
-    <!-- BottomNavigation -->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
