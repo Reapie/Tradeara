@@ -23,13 +23,13 @@
 
         <TextView
             android:id="@+id/tvCash"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_weight="1"
+            android:layout_weight="0"
             android:fontFamily="sans-serif-medium"
             android:singleLine="true"
             android:text="0,25 €"
@@ -37,12 +37,19 @@
             android:textSize="30sp"
             android:visibility="visible" />
 
+        <CheckedTextView
+            android:id="@+id/placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="CheckedTextView" />
+
         <ImageView
             android:id="@+id/ivLogo"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
-            android:layout_weight="5"
+            android:layout_weight="1"
             android:padding="10dp"
             app:srcCompat="@drawable/logo" />
 
@@ -55,9 +62,10 @@
         android:layout_height="670dp"
         android:layout_above="@id/bottom_navigation"
         android:layout_below="@id/header"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
         android:background="#F6F3F3"
         android:backgroundTint="@color/white" />
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
