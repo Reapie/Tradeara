@@ -29,6 +29,8 @@ import at.ahif18.tradeara.fragments.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
+
     private Fragment searchFragment = new SearchFragment(this);
     private Fragment depotFragment = new DepotFragment();
     private Fragment homeFragment = new HomeFragment(this);
@@ -110,17 +112,10 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
-    private int stockClickCount = 0;
     public void buySellBottomDialog(String stockName, String stockSymbol){
-        if(stockClickCount == 0){
-            BuySellFragment buySellFragment = BuySellFragment.newInstance(stockName, stockSymbol);
-            buySellFragment.show(getSupportFragmentManager(), "buy_sell_fragment");
-            buySellFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.BottomSheetDialogTheme);
-
-            stockClickCount++;
-        }
-
-        stockClickCount = 0;
+        BuySellFragment buySellFragment = BuySellFragment.newInstance(stockName, stockSymbol);
+        buySellFragment.show(getSupportFragmentManager(), "buy_sell_fragment");
+        buySellFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.BottomSheetDialogTheme);
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 public class Account {
     public static double START_BALANCE = 40000;
     private double balance = START_BALANCE;
+    private String isbn;
     private HashMap<Stock, Integer> stocks = new HashMap();
 
     public double getBalance(){

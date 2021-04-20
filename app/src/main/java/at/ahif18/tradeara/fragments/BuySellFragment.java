@@ -21,8 +21,7 @@ import at.ahif18.tradeara.R;
  */
 public class BuySellFragment extends BottomSheetDialogFragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String TAG = "BuySellFragment";
     private static final String ARG_PARAM_NAME = "stockName";
     private static final String ARG_PARAM_SYMBOL = "stockSymbol";
 

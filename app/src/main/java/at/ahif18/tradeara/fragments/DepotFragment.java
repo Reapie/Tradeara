@@ -28,8 +28,7 @@ import at.ahif18.tradeara.R;
  */
 public class DepotFragment extends Fragment {
 
-    private static String TAG = "DepotFragment";
-
+    private static final String TAG = "DepotFragment";
     private float[] yData = {40.0f, 15.0f, 65.0f};
     private String[] xData = {"SMN", "DVD", "MXN"};
     private PieChart pieChart;
