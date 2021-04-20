@@ -53,8 +53,5 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
     @Override
     public void onClick(View v) {
         mainActivity.buySellBottomDialog(tvNameStock.getText() + "", tvSymbolStock.getText() + "");
-       //Fragment buySellFragment = new BuySellFragment();
-
-       //mainActivity.makeCurrentFragment(buySellFragment);
     }
 }
