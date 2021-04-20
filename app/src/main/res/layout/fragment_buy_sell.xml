@@ -1,43 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:id="@+id/bottomSheetContainer"
     android:layout_height="match_parent"
-    tools:context=".fragments.BuySellFragment">
+    android:background="@drawable/bottom_sheet_background"
+    android:orientation="vertical">
 
-    <TableLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
 
-        <TableRow
+        <TextView
+            android:id="@+id/tvStockName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvStockSymbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tvStockName"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:textSize="14dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corners"
+            android:backgroundTint="#000000"
+            android:text="@string/buy"
+            android:textColor="#FFFFFF" />
 
-            <Button
-                android:id="@+id/btnSell"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_corners"
-                android:backgroundTint="#09AA44"
-                android:text="@string/buy" />
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corners"
+            android:backgroundTint="#000000"
+            android:text="@string/sell"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
 
-            <Button
-                android:id="@+id/btnBuy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_corners"
-                android:backgroundTint="#D51212"
-                android:text="@string/sell" />
-        </TableRow>
-
-    </TableLayout>
-
-</RelativeLayout>
+</LinearLayout>

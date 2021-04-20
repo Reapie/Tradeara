@@ -1,45 +1,31 @@
 package at.ahif18.tradeara;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.accounts.Account;
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import at.ahif18.tradeara.R;
-import at.ahif18.tradeara.bl.StockAdapter;
-import at.ahif18.tradeara.bl.StockGetter;
-import at.ahif18.tradeara.data.Stock;
 import at.ahif18.tradeara.fragments.AccountFragment;
 import at.ahif18.tradeara.fragments.BookFragment;
+import at.ahif18.tradeara.fragments.BuySellFragment;
 import at.ahif18.tradeara.fragments.DepotFragment;
 import at.ahif18.tradeara.fragments.HomeFragment;
 import at.ahif18.tradeara.fragments.SearchFragment;
-import yahoofinance.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,14 +38,14 @@ public class MainActivity extends AppCompatActivity {
     private List<Fragment> mainFragments;
 
     private TextView tvCash;
-    private FloatingActionButton fabLogo;
+    private ImageView ivLogo;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mainFragments = Arrays.asList(searchFragment, depotFragment, homeFragment, accountFragment, bookFragment);
-        fabLogo = findViewById(R.id.fabLogo);
+        ivLogo = findViewById(R.id.ivLogo);
         tvCash = findViewById(R.id.tvCash);
 
         makeCurrentFragment(homeFragment);
@@ -87,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
-        fabLogo.setOnClickListener(v -> Toast.makeText(MainActivity.this, "Onclick für Logo", Toast.LENGTH_SHORT).show());
+        ivLogo.setOnClickListener(v -> Toast.makeText(MainActivity.this, "Onclick für Logo", Toast.LENGTH_SHORT).show());
 
         tvCash.setOnClickListener(v -> {
             makeCurrentFragment(depotFragment);
@@ -124,18 +110,17 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
-    public void buySellBottomDialog(){
-        // in test
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
-                MainActivity.this, R.style.BottomSheetDialogTheme
-        );
-        View bottomSheetView = LayoutInflater.from(getApplicationContext())
-                .inflate(
-                        R.layout.layout_bottom_sheet,
-                        (LinearLayout)findViewById(R.id.bottomSheetContainer)
-                );
-        bottomSheetDialog.setContentView(bottomSheetView);
-        bottomSheetDialog.show();
+    private int stockClickCount = 0;
+    public void buySellBottomDialog(String stockName, String stockSymbol){
+        if(stockClickCount == 0){
+            BuySellFragment buySellFragment = BuySellFragment.newInstance(stockName, stockSymbol);
+            buySellFragment.show(getSupportFragmentManager(), "buy_sell_fragment");
+            buySellFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.BottomSheetDialogTheme);
+
+            stockClickCount++;
+        }else{
+            stockClickCount = 0;
+        }
     }
 
 }
