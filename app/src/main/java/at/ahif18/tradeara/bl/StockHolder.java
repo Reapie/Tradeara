@@ -52,9 +52,9 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        //mainActivity.buySellBottomDialog();
-       Fragment buySellFragment = new BuySellFragment();
+        mainActivity.buySellBottomDialog();
+       //Fragment buySellFragment = new BuySellFragment();
 
-       mainActivity.makeCurrentFragment(buySellFragment);
+       //mainActivity.makeCurrentFragment(buySellFragment);
     }
 }

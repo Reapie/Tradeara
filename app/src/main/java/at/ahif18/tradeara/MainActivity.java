@@ -13,9 +13,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -123,9 +125,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buySellBottomDialog(){
-        // im test
-        View view = getLayoutInflater().inflate(R.layout.fragment_buy_sell, null);
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        // in test
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
+                MainActivity.this, R.style.BottomSheetDialogTheme
+        );
+        View bottomSheetView = LayoutInflater.from(getApplicationContext())
+                .inflate(
+                        R.layout.layout_bottom_sheet,
+                        (LinearLayout)findViewById(R.id.bottomSheetContainer)
+                );
+        bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();
     }
 
