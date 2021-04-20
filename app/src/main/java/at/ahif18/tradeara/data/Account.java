@@ -3,7 +3,8 @@ package at.ahif18.tradeara.data;
 import java.util.HashMap;
 
 public class Account {
-    private double balance = 40000;
+    public static double START_BALANCE = 40000;
+    private double balance = START_BALANCE;
     private HashMap<Stock, Integer> stocks = new HashMap();
 
     public double getBalance(){
