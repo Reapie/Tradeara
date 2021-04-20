@@ -118,9 +118,9 @@ public class MainActivity extends AppCompatActivity {
             buySellFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.BottomSheetDialogTheme);
 
             stockClickCount++;
-        }else{
-            stockClickCount = 0;
         }
+
+        stockClickCount = 0;
     }
 
 }

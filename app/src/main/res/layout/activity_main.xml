@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rounded_corners"
     android:backgroundTint="#FFFFFF"
     android:elevation="0dp"
     android:outlineAmbientShadowColor="#E4E1E1"
@@ -18,8 +17,9 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corners_header"
-        android:backgroundTint="#FFFFFF"
+        android:background="#FFFFFF"
+        android:backgroundTint="@android:color/white"
+        android:elevation="8dp"
         android:orientation="horizontal">
 
         <TextView
