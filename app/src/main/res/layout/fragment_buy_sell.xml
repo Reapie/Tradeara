@@ -58,6 +58,7 @@
             android:elevation="8dp"
             android:text="@string/sell"
             android:textColor="#FFFFFF" />
+
     </LinearLayout>
 
 </LinearLayout>

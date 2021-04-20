@@ -31,7 +31,8 @@ public class BuySellFragment extends BottomSheetDialogFragment {
     public BuySellFragment() {
         // Required empty public constructor
     }
-    
+
+
     
     public static BuySellFragment newInstance(String stockName, String stockSymbol) {
         BuySellFragment fragment = new BuySellFragment();

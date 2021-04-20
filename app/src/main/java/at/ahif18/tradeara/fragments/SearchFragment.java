@@ -15,11 +15,6 @@ import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.bl.StockAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SearchFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SearchFragment extends Fragment {
 
     private static final String TAG = "SearchFragment";

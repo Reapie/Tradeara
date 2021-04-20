@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
+
     @Override
     public void onBackPressed() {
         if(!mainFragments.contains(currentActiveFragment())){

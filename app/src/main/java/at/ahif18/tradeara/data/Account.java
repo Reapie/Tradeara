@@ -8,6 +8,7 @@ public class Account {
     private String isbn;
     private HashMap<Stock, Integer> stocks = new HashMap();
 
+
     public double getBalance(){
         return balance;
     }

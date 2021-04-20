@@ -11,7 +11,6 @@
     android:outlineSpotShadowColor="#E4DEDE"
     tools:context="at.ahif18.tradeara.MainActivity">
 
-    <!-- Textview Cash-->
 
     <LinearLayout
         android:id="@+id/header"
@@ -49,10 +48,6 @@
 
     </LinearLayout>
 
-    <!-- FloatingActionButton Logo -->
-
-
-    <!-- FrameLayout -->
 
     <FrameLayout
         android:id="@+id/fl_wrapper"
