@@ -14,11 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import at.ahif18.tradeara.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BuySellFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class BuySellFragment extends BottomSheetDialogFragment {
 
     private static final String TAG = "BuySellFragment";
