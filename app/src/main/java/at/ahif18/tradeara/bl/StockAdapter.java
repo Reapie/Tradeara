@@ -29,7 +29,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
         this.mainActivity = mainActivity;
 
         stocks = Arrays.asList(
-                new Stock("Simon", "SMN",25.26, 24.24),
+                new Stock("Simon", "SMN", 25.26, 24.24),
                 new Stock("David", "DVD", 24.24, -25.24),
                 new Stock("Manu", "MXN", 26.24, -20.24),
                 new Stock("Martin", "MAN", 30.24, -10.24),
@@ -47,7 +47,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
     @Override
     public StockHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.stock_item,parent, false);
+                .inflate(R.layout.stock_item, parent, false);
         TextView tvNameStock = view.findViewById(R.id.tvNameStock);
         TextView tvPriceStock = view.findViewById(R.id.tvPriceStock);
         TextView tvSymbolStock = view.findViewById(R.id.tvSymbolStock);
@@ -71,16 +71,14 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
         return stocks.size();
     }
 
-    public void filter (String s){
-        stocks = new ArrayList<>(stocksAll);
-        if (!s.isEmpty()){
-            stocks = stocks
-                    .stream()
-                    .filter(stock -> (stock.getName()+stock.getSymbol())
-                            .toLowerCase()
-                            .contains(s.toLowerCase()))
-                    .collect(Collectors.toList());
-        }
+    public void filter(String s) {
+        stocks = stocksAll
+                .stream()
+                .filter(stock -> (stock.getName() + stock.getSymbol())
+                        .toLowerCase()
+                        .contains(s.toLowerCase()))
+                .collect(Collectors.toList());
+
         notifyDataSetChanged();
     }
 
