@@ -73,9 +73,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
 
     public void filter (String s){
         stocks = new ArrayList<>(stocksAll);
-        if (s.isEmpty()){
-            stocks = new ArrayList<>(stocksAll);
-        } else {
+        if (!s.isEmpty()){
             stocks = stocks
                     .stream()
                     .filter(stock -> (stock.getName()+stock.getSymbol())
