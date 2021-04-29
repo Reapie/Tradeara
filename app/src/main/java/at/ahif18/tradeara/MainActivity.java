@@ -5,6 +5,8 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.Arrays;
 import java.util.List;
 
+import at.ahif18.tradeara.data.Account;
 import at.ahif18.tradeara.fragments.AccountFragment;
 import at.ahif18.tradeara.fragments.BookFragment;
 import at.ahif18.tradeara.fragments.BuySellFragment;
@@ -41,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView tvCash;
     private ImageView ivLogo;
+
+    private Account account;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +87,11 @@ public class MainActivity extends AppCompatActivity {
             bottomNavigationView.setSelectedItemId(R.id.ic_depot);
         });
 
+
+    }
+
+    private void refreshBalance() {
+        tvCash.setText(String.format(getString(R.string.moneyFormat), account.getBalance()));
     }
 
     public void makeCurrentFragment(Fragment fragment) {
