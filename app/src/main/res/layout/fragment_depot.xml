@@ -7,25 +7,15 @@
     android:backgroundTint="#FFFFFF"
     tools:context=".fragments.DepotFragment">
 
-    <LinearLayout
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="100dp"
-        android:background="@drawable/rounded_corners"
-        android:backgroundTint="#FFFFFF"
-        android:elevation="8dp"
-        android:orientation="vertical">
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:elevation="8dp">
 
+    </com.github.mikephil.charting.charts.PieChart>
 
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/pieChart"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:elevation="8dp"></com.github.mikephil.charting.charts.PieChart>
-
-    </LinearLayout>
 </RelativeLayout>
 
