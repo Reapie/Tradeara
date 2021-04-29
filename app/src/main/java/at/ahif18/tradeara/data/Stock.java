@@ -38,4 +38,9 @@ public class Stock {
     public double getDiff(){
         return diff;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
