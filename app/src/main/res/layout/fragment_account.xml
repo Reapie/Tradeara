@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/black"
-    android:background="@color/black"
+
     tools:context=".fragments.AccountFragment">
 
     <RelativeLayout
@@ -19,6 +18,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="@string/Account_Name"
+            android:textColor="@color/black"
             android:textSize="24sp" />
 
 
@@ -29,6 +29,7 @@
             android:textSize="16sp"
             android:layout_marginStart="20dp"
             android:layout_below="@id/tvName"
+            android:textColor="@color/black"
             android:text="@string/Account_ID" />
 
         <ImageView
@@ -38,9 +39,7 @@
             android:layout_alignParentEnd="true"
             android:layout_toEndOf="@id/tvName"
             android:layout_marginTop="20dp"
-            android:src="@drawable/ic_account"
-
-            />
+            android:src="@drawable/ic_account"/>
 
 
     </RelativeLayout>
