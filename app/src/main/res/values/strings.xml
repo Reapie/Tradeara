@@ -13,5 +13,7 @@
     <string name="buySell">Buy Sell</string>
     <string name="moneyFormat">%,.2f €</string>
     <string name="accountKey">USER_ACCOUNT</string>
+    <string name="Account_ID">ID des Users(Optional)</string>
+    <string name="Account_Name">Name des Users</string>
 
 </resources>
