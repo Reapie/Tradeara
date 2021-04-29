@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "1014154538121",
+    "firebase_url": "https://tradeara-550a0-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "tradeara-550a0",
+    "storage_bucket": "tradeara-550a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1014154538121:android:d665fd8bf07bec54976a58",
+        "android_client_info": {
+          "package_name": "at.ahif18.tradeara"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1014154538121-kc91bpri6bpnd5kk942n0lqtgv2l0i1t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuTK6LznEGI6QIwByaSgEB8qI97_OezTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1014154538121-kc91bpri6bpnd5kk942n0lqtgv2l0i1t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1014154538121:android:703340742d5cd1a8976a58",
+        "android_client_info": {
+          "package_name": "at.tradeara.bl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1014154538121-kc91bpri6bpnd5kk942n0lqtgv2l0i1t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuTK6LznEGI6QIwByaSgEB8qI97_OezTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1014154538121-kc91bpri6bpnd5kk942n0lqtgv2l0i1t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
