@@ -11,7 +11,7 @@
     <string name="buy">Buy</string>
     <string name="sell">Sell</string>
     <string name="buySell">Buy Sell</string>
-    <string name="moneyFormat">%,.2f</string>
+    <string name="moneyFormat">%,.2f €</string>
     <string name="accountKey">USER_ACCOUNT</string>
 
 </resources>

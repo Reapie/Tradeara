@@ -16,8 +16,8 @@ public class PrefManager {
 
     public PrefManager(Context ctx) {
         this.ctx = ctx;
-        sharedPreferences = ctx.getSharedPreferences("Account", Context.MODE_PRIVATE);
         ACCOUNT_KEY = this.ctx.getString(R.string.accountKey);
+        sharedPreferences = this.ctx.getSharedPreferences("Account", Context.MODE_PRIVATE);
     }
 
     public Account getOrCreate() {
@@ -38,7 +38,7 @@ public class PrefManager {
         SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(acc);
-        prefsEditor.putString("MyObject", json);
+        prefsEditor.putString(ACCOUNT_KEY, json);
         prefsEditor.apply();
     }
 

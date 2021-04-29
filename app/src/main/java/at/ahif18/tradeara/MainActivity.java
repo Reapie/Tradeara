@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvCash;
     private ImageView ivLogo;
 
-    private final PrefManager prefManager = new PrefManager(this);
+    private PrefManager prefManager;
     private Account account;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,12 +89,15 @@ public class MainActivity extends AppCompatActivity {
             bottomNavigationView.setSelectedItemId(R.id.ic_depot);
         });
 
+        prefManager = new PrefManager(this);
+
         this.account = prefManager.getOrCreate();
         refreshBalance();
 
     }
 
     private void refreshBalance() {
+        // set balance in header textview
         tvCash.setText(String.format(getString(R.string.moneyFormat), account.getBalance()));
     }
 
