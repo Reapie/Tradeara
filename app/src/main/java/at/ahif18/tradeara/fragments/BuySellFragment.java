@@ -7,12 +7,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import at.ahif18.tradeara.R;
+import at.ahif18.tradeara.data.Stock;
 
 
 public class BuySellFragment extends BottomSheetDialogFragment {
@@ -24,17 +26,20 @@ public class BuySellFragment extends BottomSheetDialogFragment {
     private String stockName;
     private String stockSymbol;
 
+    private Button btnBuy;
+    private Button btnSell;
+
     public BuySellFragment() {
         // Required empty public constructor
     }
 
 
     
-    public static BuySellFragment newInstance(String stockName, String stockSymbol) {
+    public static BuySellFragment newInstance(Stock stock) {
         BuySellFragment fragment = new BuySellFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM_NAME, stockName);
-        args.putString(ARG_PARAM_SYMBOL, stockSymbol);
+        args.putString(ARG_PARAM_NAME, stock.getName());
+        args.putString(ARG_PARAM_SYMBOL, stock.getSymbol());
         fragment.setArguments(args);
         return fragment;
     }
@@ -60,8 +65,17 @@ public class BuySellFragment extends BottomSheetDialogFragment {
         tvStockName.setText(stockName);
         tvStockSymbol.setText(stockSymbol);
 
+        btnBuy = view.findViewById(R.id.btnBuy);
+        btnSell = view.findViewById(R.id.btnSell);
+
+        btnBuy.setOnClickListener(v -> {
+            BuyPopUpFragment buyPopUpFragment = BuyPopUpFragment.newInstance();
+            buyPopUpFragment.show(getFragmentManager(), "BuyPopUpFragment");
+        });
+
         return view;
     }
+
 
     public boolean allowBackPress(){
         return true;

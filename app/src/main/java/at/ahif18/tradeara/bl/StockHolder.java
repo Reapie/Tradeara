@@ -13,6 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
+import at.ahif18.tradeara.data.Stock;
 import at.ahif18.tradeara.fragments.BuySellFragment;
 
 public class StockHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -21,6 +22,7 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
     private TextView tvSymbolStock;
     private TextView tvDiffStock;
     private MainActivity mainActivity;
+    private Stock stock;
 
     public StockHolder(@NonNull View itemView, TextView tvNameStock, TextView tvPriceStock, TextView tvSymbolStock, TextView tvDiffStock, MainActivity mainActivity) {
         super(itemView);
@@ -52,6 +54,10 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        mainActivity.buySellBottomDialog(tvNameStock.getText() + "", tvSymbolStock.getText() + "");
+        mainActivity.buySellBottomDialog(stock);
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
 }

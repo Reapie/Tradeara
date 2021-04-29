@@ -24,8 +24,9 @@ import java.util.HashMap;
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.bl.StockAdapter;
+import at.ahif18.tradeara.bl.StockGetter;
 import at.ahif18.tradeara.data.Stock;
-import at.ahif18.tradeara.data.StockFavManager;
+import at.ahif18.tradeara.data.StockManager;
 
 public class SearchFragment extends Fragment {
 
@@ -102,28 +103,7 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference().child("StockList");
-
-        Gson gson = new Gson();
-        String json = gson.toJson(StockFavManager.getInstance().getMap());
-
-        myRef.setValue(json);
-
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String text = snapshot.getValue(String.class);
-                HashMap map = gson.fromJson(text, HashMap.class);
-                System.out.println(map);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        System.out.println(StockManager.getInstance().getMap());
 
         return view;
     }

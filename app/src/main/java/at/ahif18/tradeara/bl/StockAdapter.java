@@ -57,10 +57,10 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
     @Override
     public void onBindViewHolder(@NonNull StockHolder holder, int position) {
         Stock stock = stocks.get(position);
+        holder.setStock(stocks.get(position));
         holder.getTvNameStock().setText(stock.getName());
         holder.getTvPriceStock().setText(stock.getFormattedPrice());
         holder.getTvSymbolStock().setText(stock.getSymbol());
-
         holder.getTvDiffStock().setText(String.format("%s", stock.getDiff()));
         holder.getTvDiffStock().setTextColor(stock.getDiff() < 0 ? Color.RED : Color.GREEN);
     }
