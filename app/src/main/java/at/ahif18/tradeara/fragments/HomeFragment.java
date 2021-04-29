@@ -38,9 +38,6 @@ public class HomeFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
-
-
     private RecyclerView rvStockItem;
 
     @Override
