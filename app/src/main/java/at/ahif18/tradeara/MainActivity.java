@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         ivLogo.setOnClickListener(v -> {
             //Toast.makeText(MainActivity.this, "Onclick für Logo", Toast.LENGTH_SHORT).show();
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=dQw4w9WgXcQ"));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Reapie/Tradeara"));
             startActivity(browserIntent);
         });
 
