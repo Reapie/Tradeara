@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,7 +84,11 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
-        ivLogo.setOnClickListener(v -> Toast.makeText(MainActivity.this, "Onclick für Logo", Toast.LENGTH_SHORT).show());
+        ivLogo.setOnClickListener(v -> {
+            //Toast.makeText(MainActivity.this, "Onclick für Logo", Toast.LENGTH_SHORT).show();
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=dQw4w9WgXcQ"));
+            startActivity(browserIntent);
+        });
 
         tvCash.setOnClickListener(v -> {
             makeCurrentFragment(depotFragment);
@@ -96,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void refreshBalance() {
+    public void refreshBalance() {
         // set balance in header textview
         tvCash.setText(String.format(getString(R.string.moneyFormat), account.getBalance()));
     }

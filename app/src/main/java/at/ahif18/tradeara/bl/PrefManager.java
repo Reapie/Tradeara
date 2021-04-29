@@ -26,10 +26,7 @@ public class PrefManager {
         Account acc = gson.fromJson(json, Account.class);
         if (acc == null) {
             acc = new Account();
-            SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
-            json = gson.toJson(acc);
-            prefsEditor.putString(ACCOUNT_KEY, json);
-            prefsEditor.apply();
+            setAccount(acc);
         }
         return acc;
     }
