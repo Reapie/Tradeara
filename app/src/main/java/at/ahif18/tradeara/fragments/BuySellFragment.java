@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +16,13 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.data.Stock;
+import at.ahif18.tradeara.data.StockManager;
 
 
 public class BuySellFragment extends BottomSheetDialogFragment {
 
     private static final String TAG = "BuySellFragment";
-    private static final String ARG_PARAM_NAME = "stockName";
-    private static final String ARG_PARAM_SYMBOL = "stockSymbol";
+    private static final String ARG_PARAM_STOCK = "stock";
 
     private String stockName;
     private String stockSymbol;
@@ -29,17 +30,18 @@ public class BuySellFragment extends BottomSheetDialogFragment {
     private Button btnBuy;
     private Button btnSell;
 
-    public BuySellFragment() {
-        // Required empty public constructor
+    private Stock stock;
+
+    public BuySellFragment(Stock stock) {
+        this.stock = stock;
     }
 
 
     
     public static BuySellFragment newInstance(Stock stock) {
-        BuySellFragment fragment = new BuySellFragment();
+        BuySellFragment fragment = new BuySellFragment(stock);
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM_NAME, stock.getName());
-        args.putString(ARG_PARAM_SYMBOL, stock.getSymbol());
+        args.putParcelable(ARG_PARAM_STOCK, stock);
         fragment.setArguments(args);
         return fragment;
     }
@@ -48,9 +50,11 @@ public class BuySellFragment extends BottomSheetDialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            stockName = getArguments().getString(ARG_PARAM_NAME);
-            stockSymbol = getArguments().getString(ARG_PARAM_SYMBOL);
+            stock = getArguments().getParcelable(ARG_PARAM_STOCK);
         }
+
+        stockName = stock.getName();
+        stockSymbol = stock.getSymbol();
     }
 
     @Override
@@ -69,8 +73,11 @@ public class BuySellFragment extends BottomSheetDialogFragment {
         btnSell = view.findViewById(R.id.btnSell);
 
         btnBuy.setOnClickListener(v -> {
-            BuyPopUpFragment buyPopUpFragment = BuyPopUpFragment.newInstance();
+            BuyPopUpFragment buyPopUpFragment = BuyPopUpFragment.newInstance(stock);
             buyPopUpFragment.show(getFragmentManager(), "BuyPopUpFragment");
+
+
+            StockManager.getInstance().increase(stock.getName());
         });
 
         return view;

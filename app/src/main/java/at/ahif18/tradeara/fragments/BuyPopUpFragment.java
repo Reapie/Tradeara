@@ -22,12 +22,13 @@ public class BuyPopUpFragment extends DialogFragment {
     private Stock stock;
 
 
-    public BuyPopUpFragment() {
-        // Required empty public constructor
+    public BuyPopUpFragment(Stock stock) {
+        this.stock = stock;
     }
 
-    public static BuyPopUpFragment newInstance() {
-        BuyPopUpFragment fragment = new BuyPopUpFragment();
+    public static BuyPopUpFragment newInstance(Stock stock) {
+        BuyPopUpFragment fragment = new BuyPopUpFragment(stock);
+
         return fragment;
     }
 
