@@ -14,6 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import at.ahif18.tradeara.R;
+import at.ahif18.tradeara.data.Stock;
 
 
 public class BuySellFragment extends BottomSheetDialogFragment {
@@ -34,11 +35,11 @@ public class BuySellFragment extends BottomSheetDialogFragment {
 
 
     
-    public static BuySellFragment newInstance(String stockName, String stockSymbol) {
+    public static BuySellFragment newInstance(Stock stock) {
         BuySellFragment fragment = new BuySellFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM_NAME, stockName);
-        args.putString(ARG_PARAM_SYMBOL, stockSymbol);
+        args.putString(ARG_PARAM_NAME, stock.getName());
+        args.putString(ARG_PARAM_SYMBOL, stock.getSymbol());
         fragment.setArguments(args);
         return fragment;
     }

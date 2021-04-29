@@ -26,6 +26,7 @@ import java.util.List;
 
 import at.ahif18.tradeara.bl.PrefManager;
 import at.ahif18.tradeara.data.Account;
+import at.ahif18.tradeara.data.Stock;
 import at.ahif18.tradeara.fragments.AccountFragment;
 import at.ahif18.tradeara.fragments.BookFragment;
 import at.ahif18.tradeara.fragments.BuySellFragment;
@@ -136,8 +137,8 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
-    public void buySellBottomDialog(String stockName, String stockSymbol){
-        BuySellFragment buySellFragment = BuySellFragment.newInstance(stockName, stockSymbol);
+    public void buySellBottomDialog (Stock stock){
+        BuySellFragment buySellFragment = BuySellFragment.newInstance(stock);
         buySellFragment.show(getSupportFragmentManager(), "buy_sell_fragment");
         buySellFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.BottomSheetDialogTheme);
     }
