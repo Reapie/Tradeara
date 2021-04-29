@@ -5,7 +5,6 @@ import java.util.HashMap;
 public class Account {
     public static double START_BALANCE = 40000;
     private double balance;
-    private String isbn;    // very important, do not remove
     private HashMap<Stock, Integer> stocks;
 
     public Account() {
