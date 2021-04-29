@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.data.Stock;
+import at.ahif18.tradeara.data.StockManager;
 
 public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
 
@@ -28,14 +29,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
     public StockAdapter(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
 
-        stocks = Arrays.asList(
-                new Stock("Simon", "SMN", 25.26, 24.24),
-                new Stock("David", "DVD", 24.24, -25.24),
-                new Stock("Manu", "MXN", 26.24, -20.24),
-                new Stock("Martin", "MAN", 30.24, -10.24),
-                new Stock("Bene", "BNN", 150.88, 151.2),
-                new Stock("Schmidl", "SMD", 3.88, -5.23)
-        );
+        stocks = StockManager.getInstance().getStocks();
 
         stocksAll = new ArrayList<>(stocks);
     }
