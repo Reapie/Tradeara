@@ -32,7 +32,7 @@
             android:layout_weight="0"
             android:fontFamily="sans-serif-medium"
             android:singleLine="true"
-            android:text="0,25 €"
+            android:text="0 €"
             android:textColor="@color/black"
             android:textSize="30sp"
             android:visibility="visible" />
