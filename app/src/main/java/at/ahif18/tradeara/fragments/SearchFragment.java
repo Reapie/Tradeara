@@ -104,6 +104,7 @@ public class SearchFragment extends Fragment {
         });
 
         System.out.println(StockManager.getInstance().getMap());
+        StockManager.getInstance().increase("Simon");
 
         return view;
     }

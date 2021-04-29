@@ -2,6 +2,7 @@ package at.ahif18.tradeara.data;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.common.api.Response;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,21 +29,22 @@ public class StockManager {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference().child("StockList");
 
-    private StockManager(){
+    private GenericTypeIndicator<Map<String, Integer>> t = new GenericTypeIndicator<Map<String, Integer>>() {
+    }; //set snapchat getValue to the right generics
+
+    private StockManager() {
         map = new HashMap<>();
         stocks = new ArrayList<>();
 
         loadList();
-
+        //loadMap();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                GenericTypeIndicator<Map<String, Integer>> t = new GenericTypeIndicator<Map<String, Integer>>() {}; //set snapchat getValue to the right generics
-
                 map = snapshot.getValue(t);
                 System.out.println(map);
-                if (map == null || map.isEmpty()){
+                if (map == null || map.isEmpty()) {
                     loadMap(); //init Map
                     myRef.setValue(map); //upload map
                 }
@@ -53,11 +55,9 @@ public class StockManager {
 
             }
         });
-
-
     }
 
-    private void loadList (){
+    private void loadList() {
         stocks = Arrays.asList(
                 new Stock("Simon", "SMN", 25.26, 24.24),
                 new Stock("David", "DVD", 24.24, -25.24),
@@ -68,26 +68,29 @@ public class StockManager {
         );
     }
 
-    private void loadMap (){
+    private void loadMap() {
         map = new HashMap<>();
-        for (Stock stock: stocks) {
+        for (Stock stock : stocks) {
             map.put(stock.getName(), 1);
         }
+
+        myRef.setValue(map);
     }
 
-    private void increase (String name){
+    public void increase(String name) {
+        System.out.println(map);
         map.put(name, map.get(name).intValue() + 1);
         myRef.setValue(map);
     }
 
-    public synchronized static StockManager getInstance(){
-        if (instance == null){
+    public synchronized static StockManager getInstance() {
+        if (instance == null) {
             instance = new StockManager();
         }
         return instance;
     }
 
-    public Map<String, Integer> getMap(){
+    public Map<String, Integer> getMap() {
         return map;
     }
 
