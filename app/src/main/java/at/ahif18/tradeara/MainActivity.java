@@ -22,6 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.Arrays;
 import java.util.List;
 
+import at.ahif18.tradeara.bl.PrefManager;
 import at.ahif18.tradeara.data.Account;
 import at.ahif18.tradeara.fragments.AccountFragment;
 import at.ahif18.tradeara.fragments.BookFragment;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvCash;
     private ImageView ivLogo;
 
+    private final PrefManager prefManager = new PrefManager(this);
     private Account account;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
             bottomNavigationView.setSelectedItemId(R.id.ic_depot);
         });
 
+        this.account = prefManager.getOrCreate();
+        refreshBalance();
 
     }
 
