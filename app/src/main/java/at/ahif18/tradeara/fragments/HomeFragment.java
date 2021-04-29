@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.bl.StockAdapter;
+import at.ahif18.tradeara.data.StockManager;
 
 public class HomeFragment extends Fragment {
 
@@ -38,6 +39,7 @@ public class HomeFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
     private RecyclerView rvStockItem;
 
     @Override
@@ -58,7 +60,10 @@ public class HomeFragment extends Fragment {
         rvStockItem.setHasFixedSize(true);
 
         rvStockItem.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvStockItem.setAdapter(new StockAdapter(mainActivity));
+        StockAdapter stockAdapter = new StockAdapter(mainActivity);
+        rvStockItem.setAdapter(stockAdapter);
+
+        stockAdapter.setStocks(StockManager.getInstance().getHomeStocks());
         return view;
     }
 

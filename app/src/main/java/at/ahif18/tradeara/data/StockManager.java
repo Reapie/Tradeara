@@ -15,16 +15,21 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import at.ahif18.tradeara.bl.StockAdapter;
 
 public class StockManager {
     private static StockManager instance;
 
     private Map<String, Integer> map;
     private List<Stock> stocks;
+
+    private List<Stock> homeStocks;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference().child("StockList");
@@ -37,6 +42,8 @@ public class StockManager {
         stocks = new ArrayList<>();
 
         loadList();
+
+        homeStocks = new ArrayList<>(stocks);
         //loadMap();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -44,10 +51,26 @@ public class StockManager {
 
                 map = snapshot.getValue(t);
                 System.out.println(map);
+
                 if (map == null || map.isEmpty()) {
                     loadMap(); //init Map
                     myRef.setValue(map); //upload map
                 }
+
+                List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
+                list.sort(Map.Entry.comparingByValue());
+                Collections.reverse(list);
+
+                for (int i = list.size() - 1; i >= 4; i--) {
+                    list.remove(i);
+                }
+
+                homeStocks = new ArrayList<>();
+
+                for (Map.Entry<String, Integer> entry: list) {
+                    homeStocks.add(getStock(entry.getKey()));
+                }
+
             }
 
             @Override
@@ -96,5 +119,20 @@ public class StockManager {
 
     public List<Stock> getStocks() {
         return stocks;
+    }
+
+
+    private Stock getStock (String name){
+        for (Stock stock: stocks
+             ) {
+            if (stock.getName().equals(name)){
+                return stock;
+            }
+        }
+        return null;
+    }
+
+    public List<Stock> getHomeStocks() {
+        return homeStocks;
     }
 }

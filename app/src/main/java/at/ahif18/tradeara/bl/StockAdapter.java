@@ -76,4 +76,8 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
         notifyDataSetChanged();
     }
 
+    public void setStocks(List<Stock> stocks) {
+        this.stocks = stocks;
+        notifyDataSetChanged();
+    }
 }
