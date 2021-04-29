@@ -1,5 +1,7 @@
 package at.ahif18.tradeara.data;
 
+import at.ahif18.tradeara.bl.StockGetter;
+
 public class Stock {
     private String name;
     private String symbol;
@@ -10,9 +12,11 @@ public class Stock {
     //private double minPrice;
     //private double maxPrice;
 
-    public Stock(String name, double price){
+    public Stock(String name, String symbol, double price, double diff){
         this.name = name;
+        this.symbol = symbol;
         this.price = price;
+        this.diff = diff;
     }
 
     public String getFormattedPrice(){

@@ -2,13 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:backgroundTint="#FFFFFF"
     tools:context=".fragments.DepotFragment">
 
-        <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/rounded_corners"
+        android:backgroundTint="#FFFFFF"
+        android:elevation="8dp"
+        android:orientation="vertical">
+
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:text="@string/depot" />
-    </RelativeLayout>
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:elevation="8dp"></com.github.mikephil.charting.charts.PieChart>
+
+    </LinearLayout>
+</RelativeLayout>
 
