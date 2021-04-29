@@ -2,6 +2,7 @@ package at.ahif18.tradeara.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,9 +12,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+
+import java.util.HashMap;
+
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.bl.StockAdapter;
+import at.ahif18.tradeara.data.Stock;
+import at.ahif18.tradeara.data.StockFavManager;
 
 public class SearchFragment extends Fragment {
 
@@ -87,6 +99,29 @@ public class SearchFragment extends Fragment {
             public boolean onQueryTextChange(String newText) {
                 stockAdapter.filter(newText);
                 return false;
+            }
+        });
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference().child("StockList");
+
+        Gson gson = new Gson();
+        String json = gson.toJson(StockFavManager.getInstance().getMap());
+
+        myRef.setValue(json);
+
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String text = snapshot.getValue(String.class);
+                HashMap map = gson.fromJson(text, HashMap.class);
+                System.out.println(map);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
