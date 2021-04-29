@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -23,6 +24,9 @@ public class BuySellFragment extends BottomSheetDialogFragment {
 
     private String stockName;
     private String stockSymbol;
+
+    private Button btnBuy;
+    private Button btnSell;
 
     public BuySellFragment() {
         // Required empty public constructor
@@ -60,8 +64,17 @@ public class BuySellFragment extends BottomSheetDialogFragment {
         tvStockName.setText(stockName);
         tvStockSymbol.setText(stockSymbol);
 
+        btnBuy = view.findViewById(R.id.btnBuy);
+        btnSell = view.findViewById(R.id.btnSell);
+
+        btnBuy.setOnClickListener(v -> {
+            BuyPopUpFragment buyPopUpFragment = BuyPopUpFragment.newInstance();
+            buyPopUpFragment.show(getFragmentManager(), "BuyPopUpFragment");
+        });
+
         return view;
     }
+
 
     public boolean allowBackPress(){
         return true;
