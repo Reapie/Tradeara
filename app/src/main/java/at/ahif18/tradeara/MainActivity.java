@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void refreshBalance() {
+    public void refreshBalance() {
         // set balance in header textview
         tvCash.setText(String.format(getString(R.string.moneyFormat), account.getBalance()));
     }
