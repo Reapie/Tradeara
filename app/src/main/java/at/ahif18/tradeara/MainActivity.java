@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment searchFragment = new SearchFragment(this);
     private Fragment depotFragment = new DepotFragment();
     private Fragment homeFragment = new HomeFragment(this);
-    private Fragment accountFragment = new AccountFragment();
+    private Fragment accountFragment = new AccountFragment(this);
     private Fragment bookFragment = new BookFragment();
 
     private List<Fragment> mainFragments;
