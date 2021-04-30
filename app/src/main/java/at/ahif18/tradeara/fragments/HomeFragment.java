@@ -61,9 +61,8 @@ public class HomeFragment extends Fragment {
 
         rvStockItem.setLayoutManager(new LinearLayoutManager(getContext()));
         StockAdapter stockAdapter = new StockAdapter(mainActivity);
+        StockManager.getInstance().setHomeStockAdapter(stockAdapter);
         rvStockItem.setAdapter(stockAdapter);
-
-        stockAdapter.setStocks(StockManager.getInstance().getHomeStocks());
         return view;
     }
 

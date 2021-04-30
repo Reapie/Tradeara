@@ -29,7 +29,7 @@ public class StockManager {
     private Map<String, Integer> map;
     private List<Stock> stocks;
 
-    private List<Stock> homeStocks;
+    private StockAdapter homeStockAdapter;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference().child("StockList");
@@ -42,8 +42,6 @@ public class StockManager {
         stocks = new ArrayList<>();
 
         loadList();
-
-        homeStocks = new ArrayList<>(stocks);
         //loadMap();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -65,11 +63,13 @@ public class StockManager {
                     list.remove(i);
                 }
 
-                homeStocks = new ArrayList<>();
+                List <Stock> homeStocks = new ArrayList<>();
 
                 for (Map.Entry<String, Integer> entry: list) {
                     homeStocks.add(getStock(entry.getKey()));
                 }
+
+                homeStockAdapter.setStocks(homeStocks);
 
             }
 
@@ -132,7 +132,7 @@ public class StockManager {
         return null;
     }
 
-    public List<Stock> getHomeStocks() {
-        return homeStocks;
+    public void setHomeStockAdapter(StockAdapter homeStockAdapter) {
+        this.homeStockAdapter = homeStockAdapter;
     }
 }
