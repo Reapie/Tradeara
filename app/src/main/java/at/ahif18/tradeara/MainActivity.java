@@ -27,6 +27,7 @@ import java.util.List;
 import at.ahif18.tradeara.bl.PrefManager;
 import at.ahif18.tradeara.data.Account;
 import at.ahif18.tradeara.data.Stock;
+import at.ahif18.tradeara.data.StockManager;
 import at.ahif18.tradeara.fragments.AccountFragment;
 import at.ahif18.tradeara.fragments.BookFragment;
 import at.ahif18.tradeara.fragments.BuySellFragment;
@@ -84,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
+
+        StockManager.getInstance().loadList(this);
 
         ivLogo.setOnClickListener(v -> {
             //Toast.makeText(MainActivity.this, "Onclick für Logo", Toast.LENGTH_SHORT).show();
