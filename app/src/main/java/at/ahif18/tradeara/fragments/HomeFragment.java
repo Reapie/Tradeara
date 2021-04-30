@@ -49,6 +49,9 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        StockAdapter stockAdapter = new StockAdapter(mainActivity);
+        StockManager.getInstance().setHomeStockAdapter(stockAdapter);
     }
 
     @Override
@@ -60,9 +63,7 @@ public class HomeFragment extends Fragment {
         rvStockItem.setHasFixedSize(true);
 
         rvStockItem.setLayoutManager(new LinearLayoutManager(getContext()));
-        StockAdapter stockAdapter = new StockAdapter(mainActivity);
-        StockManager.getInstance().setHomeStockAdapter(stockAdapter);
-        rvStockItem.setAdapter(stockAdapter);
+        rvStockItem.setAdapter(StockManager.getInstance().getHomeStockAdapter());
         return view;
     }
 

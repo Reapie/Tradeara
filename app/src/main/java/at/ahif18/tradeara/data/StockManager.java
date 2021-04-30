@@ -135,4 +135,8 @@ public class StockManager {
     public void setHomeStockAdapter(StockAdapter homeStockAdapter) {
         this.homeStockAdapter = homeStockAdapter;
     }
+
+    public StockAdapter getHomeStockAdapter() {
+        return homeStockAdapter;
+    }
 }
