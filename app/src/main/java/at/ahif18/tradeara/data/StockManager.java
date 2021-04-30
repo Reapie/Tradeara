@@ -59,14 +59,10 @@ public class StockManager {
                 list.sort(Map.Entry.comparingByValue());
                 Collections.reverse(list);
 
-                for (int i = list.size() - 1; i >= 4; i--) {
-                    list.remove(i);
-                }
-
                 List <Stock> homeStocks = new ArrayList<>();
 
-                for (Map.Entry<String, Integer> entry: list) {
-                    homeStocks.add(getStock(entry.getKey()));
+                for (int i = 0; i < 4; i++) {
+                    homeStocks.add(getStock(list.get(i).getKey()));
                 }
 
                 homeStockAdapter.setStocks(homeStocks);
