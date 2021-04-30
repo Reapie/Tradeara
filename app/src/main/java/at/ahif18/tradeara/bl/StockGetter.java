@@ -17,12 +17,12 @@ public class StockGetter {
 
     private static String fxEnding = "EUR=X";
 
-    public static ArrayList<Stock> getStocks(String... stockNames) {
+    public static ArrayList<Stock> getStocks(String...stockSymbols) {
         ArrayList<Stock> stocks = new ArrayList();
         Thread t = new Thread(() -> {
             Map<String, Stock> stocksM = new HashMap();
             try {
-                stocksM = YahooFinance.get(stockNames, true);
+                stocksM = YahooFinance.get(stockSymbols, true);
             } catch (IOException e) {
                 e.printStackTrace();
             }

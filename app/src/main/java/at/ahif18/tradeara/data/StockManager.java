@@ -12,6 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +23,7 @@ import java.util.Map;
 import java.util.Set;
 
 import at.ahif18.tradeara.bl.StockAdapter;
+import at.ahif18.tradeara.bl.StockGetter;
 
 public class StockManager {
     private static StockManager instance;
