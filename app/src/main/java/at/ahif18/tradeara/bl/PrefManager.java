@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.text.InputType;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -18,6 +19,8 @@ public class PrefManager {
     private final SharedPreferences sharedPreferences;
     private final String ACCOUNT_KEY;
 
+    private String name = "anonymous";
+
     public PrefManager(Context ctx) {
         this.ctx = ctx;
         ACCOUNT_KEY = this.ctx.getString(R.string.accountKey);
@@ -28,32 +31,33 @@ public class PrefManager {
         Gson gson = new Gson();
         String json = sharedPreferences.getString(ACCOUNT_KEY, null);
         Account acc = gson.fromJson(json, Account.class);
-        if (acc == null) {
+        if (acc == null || acc.getName().equals("anonymous")) {
+            acc = new Account();
             AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
             builder.setTitle("Name");
             // Set up the input
             final EditText input = new EditText(ctx);
-            // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
             input.setInputType(InputType.TYPE_CLASS_TEXT);
             builder.setView(input);
-            final String[] name = new String[1];
             // Set up the buttons
+            Account finalAcc = acc;
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    name[0] = input.getText().toString();
+                    name = input.getText().toString();
+                    finalAcc.setName(name);
+                    dialog.cancel();
                 }
             });
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    name[0] = "anonymous";
+                    name = "anonymous";
                     dialog.cancel();
                 }
             });
-            acc = new Account(name[0]);
             builder.show();
-            setAccount(acc);
+            setAccount(finalAcc);
         }
         return acc;
     }
@@ -62,6 +66,7 @@ public class PrefManager {
         SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(acc);
+        System.out.println(json);
         prefsEditor.putString(ACCOUNT_KEY, json);
         prefsEditor.apply();
     }

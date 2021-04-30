@@ -8,10 +8,9 @@ public class Account {
     private HashMap<Stock, Integer> stocks;
     private String name = "anonymous";
 
-    public Account(String name) {
+    public Account() {
         this.balance = START_BALANCE;
         this.stocks = new HashMap();
-        this.name = name;
     }
 
     public double getBalance(){
@@ -34,5 +33,9 @@ public class Account {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

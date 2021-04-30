@@ -97,10 +97,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         prefManager = new PrefManager(this);
-
         this.account = prefManager.getOrCreate();
         refreshBalance();   // ALWAYS CALL WHEN BALANCE CHANGES
 
+    }
+
+    public Account getAccount() {
+        return account;
     }
 
     public void refreshBalance() {

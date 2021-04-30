@@ -67,7 +67,8 @@ public class AccountFragment extends Fragment {
         rvUserStock = view.findViewById(R.id.rvUserStock);
         rvUserStock.setHasFixedSize(true);
 
-
+        TextView tvAccountName = view.findViewById(R.id.tvName);
+        tvAccountName.setText(mainActivity.getAccount().getName());
 
         rvUserStock.setLayoutManager(new LinearLayoutManager(getContext()));
         rvUserStock.setAdapter(new StockAdapter(mainActivity));
