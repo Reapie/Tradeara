@@ -14,7 +14,6 @@
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:elevation="8dp">
-
     </com.github.mikephil.charting.charts.PieChart>
 
 </RelativeLayout>

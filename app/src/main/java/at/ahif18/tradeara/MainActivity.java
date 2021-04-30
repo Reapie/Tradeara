@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         prefManager = new PrefManager(this);
 
         this.account = prefManager.getOrCreate();
-        refreshBalance();
+        refreshBalance();   // ALWAYS CALL WHEN BALANCE CHANGES
 
     }
 

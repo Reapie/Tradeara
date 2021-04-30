@@ -67,6 +67,8 @@ public class AccountFragment extends Fragment {
         rvUserStock = view.findViewById(R.id.rvUserStock);
         rvUserStock.setHasFixedSize(true);
 
+
+
         rvUserStock.setLayoutManager(new LinearLayoutManager(getContext()));
         rvUserStock.setAdapter(new StockAdapter(mainActivity));
         return view;

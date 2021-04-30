@@ -6,10 +6,12 @@ public class Account {
     public static double START_BALANCE = 40000;
     private double balance;
     private HashMap<Stock, Integer> stocks;
+    private String name = "anonymous";
 
-    public Account() {
+    public Account(String name) {
         this.balance = START_BALANCE;
         this.stocks = new HashMap();
+        this.name = name;
     }
 
     public double getBalance(){
@@ -28,5 +30,9 @@ public class Account {
         }else{
             System.out.println("Error");
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }
