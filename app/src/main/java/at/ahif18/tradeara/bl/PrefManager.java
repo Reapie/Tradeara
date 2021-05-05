@@ -19,7 +19,7 @@ public class PrefManager {
     private final SharedPreferences sharedPreferences;
     private final String ACCOUNT_KEY;
 
-    private String name = "anonymous";
+    private String name;
 
     public PrefManager(Context ctx) {
         this.ctx = ctx;
@@ -31,7 +31,7 @@ public class PrefManager {
         Gson gson = new Gson();
         String json = sharedPreferences.getString(ACCOUNT_KEY, null);
         Account acc = gson.fromJson(json, Account.class);
-        if (acc == null || acc.getName().equals("anonymous")) {
+        if (acc == null) {
             acc = new Account();
             AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
             builder.setTitle("Name");
