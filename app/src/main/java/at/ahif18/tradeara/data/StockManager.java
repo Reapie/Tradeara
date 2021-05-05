@@ -1,5 +1,8 @@
 package at.ahif18.tradeara.data;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.common.api.Response;
@@ -12,6 +15,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,8 +27,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import at.ahif18.tradeara.bl.StockAdapter;
+import at.ahif18.tradeara.bl.StockGetter;
 
 public class StockManager {
     private static StockManager instance;
@@ -40,8 +50,6 @@ public class StockManager {
     private StockManager() {
         map = new HashMap<>();
         stocks = new ArrayList<>();
-
-        loadList();
         //loadMap();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -76,7 +84,7 @@ public class StockManager {
         });
     }
 
-    private void loadList() {
+    public void loadList(Context context) {
         stocks = Arrays.asList(
                 new Stock("Simon", "SMN", 25.26, 24.24),
                 new Stock("David", "DVD", 24.24, -25.24),
@@ -85,6 +93,18 @@ public class StockManager {
                 new Stock("Bene", "BNN", 150.88, 151.2),
                 new Stock("Schmidl", "SMD", 3.88, -5.23)
         );
+
+        AssetManager am = context.getAssets();
+
+        try {
+            InputStream is = am.open("stocks.csv");
+            String[] symbols = new BufferedReader(new InputStreamReader(is)).lines().skip(1).collect(Collectors.toList()).toArray(new String[0]);
+            System.out.println(StockGetter.getStocks(symbols));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //System.out.println(StockGetter.getStocks("TSLA", "BABA", "XCAP.L"));
     }
 
     private void loadMap() {
