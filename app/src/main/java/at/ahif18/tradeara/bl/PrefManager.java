@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.data.Account;
 
@@ -18,21 +19,25 @@ public class PrefManager {
     private final Context ctx;
     private final SharedPreferences sharedPreferences;
     private final String ACCOUNT_KEY;
+    private final String ACCOUNT_NAME_KEY;
+    private final MainActivity main;
 
     private String name;
 
-    public PrefManager(Context ctx) {
+    public PrefManager(Context ctx, MainActivity main) {
         this.ctx = ctx;
         ACCOUNT_KEY = this.ctx.getString(R.string.accountKey);
+        ACCOUNT_NAME_KEY = this.ctx.getString(R.string.accountNameKey);
         sharedPreferences = this.ctx.getSharedPreferences("Account", Context.MODE_PRIVATE);
+        this.main = main;
     }
 
-    public Account getOrCreate() {
+    public void getOrCreate() {
         Gson gson = new Gson();
         String json = sharedPreferences.getString(ACCOUNT_KEY, null);
         Account acc = gson.fromJson(json, Account.class);
-        if (acc == null) {
-            acc = new Account();
+        name = sharedPreferences.getString(ACCOUNT_NAME_KEY, "none");
+        if (name.equals("none") || acc == null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
             builder.setTitle("Name");
             // Set up the input
@@ -40,26 +45,36 @@ public class PrefManager {
             input.setInputType(InputType.TYPE_CLASS_TEXT);
             builder.setView(input);
             // Set up the buttons
-            Account finalAcc = acc;
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    name = input.getText().toString();
-                    finalAcc.setName(name);
+                    String name = input.getText().toString();
+                    Account acc = new Account(name);
+                    setAccount(acc);
+                    SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
+                    prefsEditor.putString(ACCOUNT_NAME_KEY, name);
+                    prefsEditor.apply();
                     dialog.cancel();
+                    main.setAccount(acc);
                 }
             });
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    name = "anonymous";
+                    String name = "none";
+                    Account acc = new Account(name);
+                    setAccount(acc);
+                    SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
+                    prefsEditor.putString(ACCOUNT_NAME_KEY, name);
+                    prefsEditor.apply();
                     dialog.cancel();
+                    main.setAccount(acc);
                 }
             });
             builder.show();
-            setAccount(finalAcc);
+        } else {
+            main.setAccount(acc);
         }
-        return acc;
     }
 
     public void setAccount(Account acc) {
@@ -68,6 +83,7 @@ public class PrefManager {
         String json = gson.toJson(acc);
         System.out.println(json);
         prefsEditor.putString(ACCOUNT_KEY, json);
+        prefsEditor.putString(ACCOUNT_NAME_KEY, acc.getName());
         prefsEditor.apply();
     }
 

@@ -99,10 +99,13 @@ public class MainActivity extends AppCompatActivity {
             bottomNavigationView.setSelectedItemId(R.id.ic_depot);
         });
 
-        prefManager = new PrefManager(this);
-        this.account = prefManager.getOrCreate();
-        refreshBalance();   // ALWAYS CALL WHEN BALANCE CHANGES
+        prefManager = new PrefManager(this, this);
+        prefManager.getOrCreate();
+    }
 
+    public void setAccount(Account acc) {
+        this.account = acc;
+        refreshBalance();   // ALWAYS CALL WHEN BALANCE CHANGES
     }
 
     public Account getAccount() {
