@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
+
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.bl.StockAdapter;
@@ -25,6 +27,7 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private static MainActivity mainActivity;
+    private static ShimmerFrameLayout shimmerFrameLayout;
 
 
     public HomeFragment(MainActivity mainActivity) {

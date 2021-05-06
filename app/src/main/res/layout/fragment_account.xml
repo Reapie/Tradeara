@@ -34,12 +34,12 @@
             android:textSize="16sp" />
 
         <ImageView
-            android:id="@+id/ivProiflePicture"
-            android:layout_width="wrap_content"
+            android:id="@+id/ivProfilePicture"
+            android:layout_width="150dp"
             android:layout_height="130dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="15dp"
-            android:layout_toEndOf="@id/tvName"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:contentDescription="TODO"
             android:src="@drawable/ic_account" />
 
