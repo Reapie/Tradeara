@@ -127,11 +127,11 @@ public class StockManager {
         for (Stock stock : stocks) {
             map.put(base64Encode(stock.getName()), 1);
         }
-
         myRef.setValue(map);
     }
 
     public void increase(String name) {
+        name = base64Encode(name);
         System.out.println(map);
         map.put(name, map.get(name).intValue() + 1);
         myRef.setValue(map);
