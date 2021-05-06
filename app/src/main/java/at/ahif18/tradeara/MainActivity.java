@@ -99,10 +99,13 @@ public class MainActivity extends AppCompatActivity {
             bottomNavigationView.setSelectedItemId(R.id.ic_depot);
         });
 
-        prefManager = new PrefManager(this);
-        this.account = prefManager.getOrCreate();
-        refreshBalance();   // ALWAYS CALL WHEN BALANCE CHANGES
+        prefManager = new PrefManager(this, this);
+        prefManager.getOrCreate();
+    }
 
+    public void setAccount(Account acc) {
+        this.account = acc;
+        refreshBalance();   // ALWAYS CALL WHEN BALANCE CHANGES
     }
 
     public Account getAccount() {
@@ -125,9 +128,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(!mainFragments.contains(currentActiveFragment())){
+        if(currentActiveFragment() != homeFragment){
             FragmentManager fragments = getSupportFragmentManager();
             fragments.popBackStack();
+            makeCurrentFragment(homeFragment);
+            BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+            bottomNavigationView.setSelectedItemId(R.id.ic_home);
+        } else {
+            finish();
+            System.exit(0);
         }
     }
 
