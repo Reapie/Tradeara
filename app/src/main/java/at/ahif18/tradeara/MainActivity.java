@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        StockManager.getInstance().loadList(this);
+
         mainFragments = Arrays.asList(searchFragment, depotFragment, homeFragment, accountFragment, bookFragment);
         ivLogo = findViewById(R.id.ivLogo);
         tvCash = findViewById(R.id.tvCash);
@@ -85,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
-
-        StockManager.getInstance().loadList(this);
 
         ivLogo.setOnClickListener(v -> {
             //Toast.makeText(MainActivity.this, "Onclick für Logo", Toast.LENGTH_SHORT).show();

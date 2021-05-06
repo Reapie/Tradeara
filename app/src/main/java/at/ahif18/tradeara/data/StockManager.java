@@ -19,19 +19,25 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import at.ahif18.tradeara.bl.StockAdapter;
 import at.ahif18.tradeara.bl.StockGetter;
+import yahoofinance.YahooFinance;
+import yahoofinance.histquotes.Interval;
 
 public class StockManager {
     private static StockManager instance;
@@ -51,6 +57,33 @@ public class StockManager {
         map = new HashMap<>();
         stocks = new ArrayList<>();
         //loadMap();
+    }
+
+
+    public void loadList(Context context) {
+        /*stocks = Arrays.asList(
+                new Stock("Simon", "SMN", 25.26, 24.24),
+                new Stock("David", "DVD", 24.24, -25.24),
+                new Stock("Manu", "MXN", 26.24, -20.24),
+                new Stock("Martin", "MAN", 30.24, -10.24),
+                new Stock("Bene", "BNN", 150.88, 151.2),
+                new Stock("Schmidl", "SMD", 3.88, -5.23)
+        );*/
+
+        AssetManager am = context.getAssets();
+        try {
+            InputStream is = am.open("stocks.csv");
+            String[] symbols = new BufferedReader(new InputStreamReader(is)).lines().skip(1).collect(Collectors.toList()).toArray(new String[0]);
+            ArrayList<yahoofinance.Stock> stockList = StockGetter.getStocks(symbols);
+            System.out.println(stockList);
+
+            stockList.forEach(stock -> stocks.add(new Stock(stock.getName(), stock.getSymbol(), stock.getQuote().getPrice().doubleValue(), 23.5)));
+
+            System.out.println(stocks);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -67,13 +100,16 @@ public class StockManager {
                 list.sort(Map.Entry.comparingByValue());
                 Collections.reverse(list);
 
-                List <Stock> homeStocks = new ArrayList<>();
 
-                for (int i = 0; i < 4; i++) {
-                    homeStocks.add(getStock(list.get(i).getKey()));
+                if (!list.isEmpty()) {
+                    List<Stock> homeStocks = new ArrayList<>();
+
+                    for (int i = 0; i < 4; i++) {
+                        homeStocks.add(getStock(base64Decode(list.get(i).getKey())));
+                    }
+                    homeStockAdapter.setStocks(homeStocks);
                 }
 
-                homeStockAdapter.setStocks(homeStocks);
 
             }
 
@@ -82,27 +118,6 @@ public class StockManager {
 
             }
         });
-    }
-
-    public void loadList(Context context) {
-        stocks = Arrays.asList(
-                new Stock("Simon", "SMN", 25.26, 24.24),
-                new Stock("David", "DVD", 24.24, -25.24),
-                new Stock("Manu", "MXN", 26.24, -20.24),
-                new Stock("Martin", "MAN", 30.24, -10.24),
-                new Stock("Bene", "BNN", 150.88, 151.2),
-                new Stock("Schmidl", "SMD", 3.88, -5.23)
-        );
-
-        AssetManager am = context.getAssets();
-
-        try {
-            InputStream is = am.open("stocks.csv");
-            String[] symbols = new BufferedReader(new InputStreamReader(is)).lines().skip(1).collect(Collectors.toList()).toArray(new String[0]);
-            System.out.println(StockGetter.getStocks(symbols));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         //System.out.println(StockGetter.getStocks("TSLA", "BABA", "XCAP.L"));
     }
@@ -110,7 +125,7 @@ public class StockManager {
     private void loadMap() {
         map = new HashMap<>();
         for (Stock stock : stocks) {
-            map.put(stock.getName(), 1);
+            map.put(base64Encode(stock.getName()), 1);
         }
 
         myRef.setValue(map);
@@ -138,10 +153,10 @@ public class StockManager {
     }
 
 
-    private Stock getStock (String name){
-        for (Stock stock: stocks
-             ) {
-            if (stock.getName().equals(name)){
+    private Stock getStock(String name) {
+        for (Stock stock : stocks
+        ) {
+            if (stock.getName().equals(name)) {
                 return stock;
             }
         }
@@ -154,5 +169,21 @@ public class StockManager {
 
     public StockAdapter getHomeStockAdapter() {
         return homeStockAdapter;
+    }
+    private static String base64Encode(String value) {
+        try {
+            return Base64.getEncoder()
+                    .encodeToString(value.getBytes(StandardCharsets.UTF_8.toString()));
+        } catch(UnsupportedEncodingException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private static String base64Decode(String value) {
+            String decode = new String(Base64.getDecoder()
+                    .decode(value));
+            System.out.println(decode);
+            return decode;
+
     }
 }
