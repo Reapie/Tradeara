@@ -128,9 +128,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(!mainFragments.contains(currentActiveFragment())){
+        if(currentActiveFragment() != homeFragment){
             FragmentManager fragments = getSupportFragmentManager();
             fragments.popBackStack();
+            makeCurrentFragment(homeFragment);
+            BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+            bottomNavigationView.setSelectedItemId(R.id.ic_home);
+        } else {
+            finish();
+            System.exit(0);
         }
     }
 

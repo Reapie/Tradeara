@@ -42,8 +42,10 @@ public class PrefManager {
             builder.setTitle("Name");
             // Set up the input
             final EditText input = new EditText(ctx);
+            input.setPadding(50, 50, 50, 50);
             input.setInputType(InputType.TYPE_CLASS_TEXT);
             builder.setView(input);
+            builder.setCancelable(false);
             // Set up the buttons
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
