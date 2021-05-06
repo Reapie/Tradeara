@@ -46,6 +46,12 @@ public class StockGetter {
             }
         }, "Stock Getter");
         t.start();
+
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return stocks;
     }
 

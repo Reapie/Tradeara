@@ -2,16 +2,22 @@ package at.ahif18.tradeara.data;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.common.api.Response;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -43,6 +49,7 @@ public class StockManager {
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference().child("StockList");
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private GenericTypeIndicator<Map<String, Integer>> t = new GenericTypeIndicator<Map<String, Integer>>() {
     }; //set snapchat getValue to the right generics
@@ -50,6 +57,20 @@ public class StockManager {
     private StockManager() {
         map = new HashMap<>();
         stocks = new ArrayList<>();
+
+        /*db.collection("StockList")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        System.out.println("FirebaseFirestore");
+                        for (QueryDocumentSnapshot document: task.getResult()
+                             ) {
+                            System.out.println(document.getData());
+                        }
+                    }
+                });*/
+
         //loadMap();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -75,6 +96,11 @@ public class StockManager {
 
                 homeStockAdapter.setStocks(homeStocks);
 
+                /*db.collection("StockList")
+                        .add(map)
+                        .addOnSuccessListener(documentReference -> Log.d("", "DocumentSnapshot added with ID: " + documentReference.getId()))
+                        .addOnFailureListener(e -> Log.w("", "Error adding document", e));*/
+
             }
 
             @Override
@@ -99,7 +125,9 @@ public class StockManager {
         try {
             InputStream is = am.open("stocks.csv");
             String[] symbols = new BufferedReader(new InputStreamReader(is)).lines().skip(1).collect(Collectors.toList()).toArray(new String[0]);
-            System.out.println(StockGetter.getStocks(symbols));
+            ArrayList<yahoofinance.Stock> fianceList = StockGetter.getStocks(symbols);
+
+            fianceList.forEach(System.out::println);
         } catch (IOException e) {
             e.printStackTrace();
         }
