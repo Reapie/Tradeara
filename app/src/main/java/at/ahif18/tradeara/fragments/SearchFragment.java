@@ -105,4 +105,8 @@ public class SearchFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public String toString() {
+        return TAG;
+    }
 }

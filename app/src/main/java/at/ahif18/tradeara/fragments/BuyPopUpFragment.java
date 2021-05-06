@@ -19,6 +19,7 @@ import at.ahif18.tradeara.data.Stock;
  */
 public class BuyPopUpFragment extends DialogFragment {
 
+    private static final String TAG = "BuyPopUpFragment";
     private static final String ARG_PARAM_STOCK = "stock";
 
     private Stock stock;
@@ -55,5 +56,10 @@ public class BuyPopUpFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_buy_pop_up, container, false);
 
         return view;
+    }
+
+    @Override
+    public String toString() {
+        return TAG;
     }
 }

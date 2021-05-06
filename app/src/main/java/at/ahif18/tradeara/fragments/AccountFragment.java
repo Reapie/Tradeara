@@ -75,4 +75,9 @@ public class AccountFragment extends Fragment {
         return view;
 
     }
+
+    @Override
+    public String toString() {
+        return TAG;
+    }
 }

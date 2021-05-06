@@ -10,7 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.facebook.shimmer.ShimmerFrameLayout;
+import com.ethanhua.skeleton.RecyclerViewSkeletonScreen;
+import com.ethanhua.skeleton.Skeleton;
 
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
@@ -27,7 +28,7 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private static MainActivity mainActivity;
-    private static ShimmerFrameLayout shimmerFrameLayout;
+    private RecyclerViewSkeletonScreen skeletonScreen;
 
 
     public HomeFragment(MainActivity mainActivity) {
@@ -55,6 +56,7 @@ public class HomeFragment extends Fragment {
 
         StockAdapter stockAdapter = new StockAdapter(mainActivity);
         StockManager.getInstance().setHomeStockAdapter(stockAdapter);
+
     }
 
     @Override
@@ -64,11 +66,15 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         rvStockItem = view.findViewById(R.id.rvStockItem);
         rvStockItem.setHasFixedSize(true);
-
         rvStockItem.setLayoutManager(new LinearLayoutManager(getContext()));
         rvStockItem.setAdapter(StockManager.getInstance().getHomeStockAdapter());
+
         return view;
     }
 
+    @Override
+    public String toString() {
+        return TAG;
+    }
 
 }

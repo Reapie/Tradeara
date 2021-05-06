@@ -75,8 +75,6 @@ public class BuySellFragment extends BottomSheetDialogFragment {
         btnBuy.setOnClickListener(v -> {
             BuyPopUpFragment buyPopUpFragment = BuyPopUpFragment.newInstance(stock);
             buyPopUpFragment.show(getFragmentManager(), "BuyPopUpFragment");
-
-
             StockManager.getInstance().increase(stock.getName());
         });
 

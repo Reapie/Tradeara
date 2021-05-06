@@ -107,6 +107,7 @@ public class DepotFragment extends Fragment {
         l.setEnabled(false);
 
         pieChart.invalidate();
-
     }
+
+
 }

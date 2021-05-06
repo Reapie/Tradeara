@@ -10,13 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.facebook.shimmer.Shimmer;
-import com.facebook.shimmer.ShimmerFrameLayout;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Handler;
 import java.util.stream.Collectors;
 
 import at.ahif18.tradeara.MainActivity;
