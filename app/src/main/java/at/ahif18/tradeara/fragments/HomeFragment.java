@@ -10,8 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ethanhua.skeleton.RecyclerViewSkeletonScreen;
-import com.ethanhua.skeleton.Skeleton;
 
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
@@ -28,7 +26,6 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private static MainActivity mainActivity;
-    private RecyclerViewSkeletonScreen skeletonScreen;
 
 
     public HomeFragment(MainActivity mainActivity) {
