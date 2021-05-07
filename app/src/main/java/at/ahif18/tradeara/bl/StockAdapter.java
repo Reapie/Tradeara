@@ -26,7 +26,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
     private List<Stock> stocksAll;
     private MainActivity mainActivity;
 
-    private boolean showShimmer=true;
+    private static boolean showShimmer=true;
     private int SHIMMER_ITEM_NUMBER=5;
 
     public StockAdapter(MainActivity mainActivity) {
@@ -54,8 +54,6 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
     @Override
     public void onBindViewHolder(@NonNull StockHolder holder, int position) {
         showShimmer = false;
-
-
         if(showShimmer){
             holder.getShimmerFrameLayout().startShimmer();
         }else{
@@ -97,5 +95,9 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
     public void setStocks(List<Stock> stocks) {
         this.stocks = stocks;
         notifyDataSetChanged();
+    }
+
+    public static void setShowShimmer(boolean shimmer) {
+        showShimmer = shimmer;
     }
 }

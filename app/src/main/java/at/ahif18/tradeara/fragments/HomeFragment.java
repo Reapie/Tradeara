@@ -52,6 +52,8 @@ public class HomeFragment extends Fragment {
 
         StockAdapter stockAdapter = new StockAdapter(mainActivity);
         StockManager.getInstance().setHomeStockAdapter(stockAdapter);
+        StockManager.getInstance().loadList(mainActivity);
+        //StockAdapter.setShowShimmer(false);
 
     }
 
