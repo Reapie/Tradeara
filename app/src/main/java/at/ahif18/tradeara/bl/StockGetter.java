@@ -52,6 +52,7 @@ public class StockGetter {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         return stocks;
     }
 

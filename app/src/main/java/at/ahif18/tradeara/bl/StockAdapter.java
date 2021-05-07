@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +27,6 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
 
     public StockAdapter(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
-
         stocks = StockManager.getInstance().getStocks();
 
         stocksAll = new ArrayList<>(stocks);
