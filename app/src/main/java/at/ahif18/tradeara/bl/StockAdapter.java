@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,10 +26,13 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
     private List<Stock> stocksAll;
     private MainActivity mainActivity;
 
+    private boolean showShimmer=true;
+    private int SHIMMER_ITEM_NUMBER=5;
+
     public StockAdapter(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
-        stocks = StockManager.getInstance().getStocks();
 
+        stocks = StockManager.getInstance().getStocks();
         stocksAll = new ArrayList<>(stocks);
     }
 
@@ -39,28 +43,44 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
     @Override
     public StockHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.stock_item, parent, false);
-        TextView tvNameStock = view.findViewById(R.id.tvNameStock);
-        TextView tvPriceStock = view.findViewById(R.id.tvPriceStock);
-        TextView tvSymbolStock = view.findViewById(R.id.tvSymbolStock);
-        TextView tvDiffStock = view.findViewById(R.id.tvDiffStock);
+                .inflate(R.layout.shimmer_item_view, parent, false);
+        TextView tvNameStock = view.findViewById(R.id.tvShimmerNameStock);
+        TextView tvPriceStock = view.findViewById(R.id.tvShimmerPriceStock);
+        TextView tvSymbolStock = view.findViewById(R.id.tvShimmerSymbolStock);
+        TextView tvDiffStock = view.findViewById(R.id.tvShimmerDiffStock);
         return new StockHolder(view, tvNameStock, tvPriceStock, tvSymbolStock, tvDiffStock, mainActivity);
     }
 
     @Override
     public void onBindViewHolder(@NonNull StockHolder holder, int position) {
-        Stock stock = stocks.get(position);
-        holder.setStock(stocks.get(position));
-        holder.getTvNameStock().setText(stock.getName());
-        holder.getTvPriceStock().setText(stock.getFormattedPrice());
-        holder.getTvSymbolStock().setText(stock.getSymbol());
-        holder.getTvDiffStock().setText(String.format("%s", stock.getDiff()));
-        holder.getTvDiffStock().setTextColor(stock.getDiff() < 0 ? Color.RED : Color.GREEN);
+        showShimmer = false;
+
+
+        if(showShimmer){
+            holder.getShimmerFrameLayout().startShimmer();
+        }else{
+            holder.getShimmerFrameLayout().stopShimmer();
+            holder.getShimmerFrameLayout().setShimmer(null);
+
+            holder.getTvNameStock().setBackground(null);
+            holder.getTvPriceStock().setBackground(null);
+            holder.getTvSymbolStock().setBackground(null);
+            holder.getTvDiffStock().setBackground(null);
+
+            Stock stock = stocks.get(position);
+            holder.setStock(stocks.get(position));
+            holder.getTvNameStock().setText(stock.getName());
+            holder.getTvPriceStock().setText(stock.getFormattedPrice());
+            holder.getTvSymbolStock().setText(stock.getSymbol());
+            holder.getTvDiffStock().setText(String.format("%s", stock.getDiff()));
+            holder.getTvDiffStock().setTextColor(stock.getDiff() < 0 ? Color.RED : Color.GREEN);
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return stocks.size();
+        return showShimmer ? SHIMMER_ITEM_NUMBER : stocks.size();
     }
 
     public void filter(String s) {

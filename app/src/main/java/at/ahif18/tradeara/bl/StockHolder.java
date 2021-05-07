@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import at.ahif18.tradeara.MainActivity;
@@ -23,6 +24,7 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
     private TextView tvDiffStock;
     private MainActivity mainActivity;
     private Stock stock;
+    private ShimmerFrameLayout shimmerFrameLayout;
 
     public StockHolder(@NonNull View itemView, TextView tvNameStock, TextView tvPriceStock, TextView tvSymbolStock, TextView tvDiffStock, MainActivity mainActivity) {
         super(itemView);
@@ -32,6 +34,7 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
         this.tvDiffStock = tvDiffStock;
         this.mainActivity = mainActivity;
 
+        shimmerFrameLayout = itemView.findViewById(R.id.shimmer_layout);
         itemView.setOnClickListener(this);
     }
 
@@ -59,5 +62,9 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
 
     public void setStock(Stock stock) {
         this.stock = stock;
+    }
+
+    public ShimmerFrameLayout getShimmerFrameLayout() {
+        return shimmerFrameLayout;
     }
 }

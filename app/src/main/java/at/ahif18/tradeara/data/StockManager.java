@@ -118,7 +118,6 @@ public class StockManager {
 
             }
         });
-
         //System.out.println(StockGetter.getStocks("TSLA", "BABA", "XCAP.L"));
     }
 
