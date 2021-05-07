@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import at.ahif18.tradeara.bl.PrefManager;
+import at.ahif18.tradeara.bl.StockAdapter;
 import at.ahif18.tradeara.data.Account;
 import at.ahif18.tradeara.data.Stock;
 import at.ahif18.tradeara.data.StockManager;
@@ -56,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        StockManager.getInstance().loadList(this);
 
         mainFragments = Arrays.asList(searchFragment, depotFragment, homeFragment, accountFragment, bookFragment);
         ivLogo = findViewById(R.id.ivLogo);
