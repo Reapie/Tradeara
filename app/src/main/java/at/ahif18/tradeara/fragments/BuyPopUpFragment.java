@@ -19,22 +19,35 @@ import at.ahif18.tradeara.data.Stock;
  */
 public class BuyPopUpFragment extends DialogFragment {
 
+    private static final String TAG = "BuyPopUpFragment";
+    private static final String ARG_PARAM_STOCK = "stock";
+
     private Stock stock;
+    private String stockName;
+    private String stockSymbol;
 
+    public BuyPopUpFragment() {
 
-    public BuyPopUpFragment(Stock stock) {
-        this.stock = stock;
     }
 
     public static BuyPopUpFragment newInstance(Stock stock) {
-        BuyPopUpFragment fragment = new BuyPopUpFragment(stock);
+        BuyPopUpFragment fragment = new BuyPopUpFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(ARG_PARAM_STOCK, stock);
 
+        fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            stock = getArguments().getParcelable(ARG_PARAM_STOCK);
+        }
+
+        stockName = stock.getName();
+        stockSymbol = stock.getSymbol();
     }
 
     @Override
@@ -43,5 +56,10 @@ public class BuyPopUpFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_buy_pop_up, container, false);
 
         return view;
+    }
+
+    @Override
+    public String toString() {
+        return TAG;
     }
 }

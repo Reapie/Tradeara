@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import at.ahif18.tradeara.bl.PrefManager;
+import at.ahif18.tradeara.bl.StockAdapter;
 import at.ahif18.tradeara.data.Account;
 import at.ahif18.tradeara.data.Stock;
 import at.ahif18.tradeara.data.StockManager;
@@ -86,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
-        StockManager.getInstance().loadList(this);
-
         ivLogo.setOnClickListener(v -> {
             //Toast.makeText(MainActivity.this, "Onclick für Logo", Toast.LENGTH_SHORT).show();
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Reapie/Tradeara"));
@@ -99,10 +98,13 @@ public class MainActivity extends AppCompatActivity {
             bottomNavigationView.setSelectedItemId(R.id.ic_depot);
         });
 
-        prefManager = new PrefManager(this);
-        this.account = prefManager.getOrCreate();
-        refreshBalance();   // ALWAYS CALL WHEN BALANCE CHANGES
+        prefManager = new PrefManager(this, this);
+        prefManager.getOrCreate();
+    }
 
+    public void setAccount(Account acc) {
+        this.account = acc;
+        refreshBalance();   // ALWAYS CALL WHEN BALANCE CHANGES
     }
 
     public Account getAccount() {
@@ -125,9 +127,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(!mainFragments.contains(currentActiveFragment())){
+        if(currentActiveFragment() != homeFragment){
             FragmentManager fragments = getSupportFragmentManager();
             fragments.popBackStack();
+            makeCurrentFragment(homeFragment);
+            BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+            bottomNavigationView.setSelectedItemId(R.id.ic_home);
+        } else {
+            finish();
+            System.exit(0);
         }
     }
 

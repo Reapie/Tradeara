@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.bl.StockAdapter;
@@ -21,7 +22,6 @@ public class HomeFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private static MainActivity mainActivity;
@@ -52,6 +52,9 @@ public class HomeFragment extends Fragment {
 
         StockAdapter stockAdapter = new StockAdapter(mainActivity);
         StockManager.getInstance().setHomeStockAdapter(stockAdapter);
+        StockManager.getInstance().loadList(mainActivity);
+        //StockAdapter.setShowShimmer(false);
+
     }
 
     @Override
@@ -61,11 +64,15 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         rvStockItem = view.findViewById(R.id.rvStockItem);
         rvStockItem.setHasFixedSize(true);
-
         rvStockItem.setLayoutManager(new LinearLayoutManager(getContext()));
         rvStockItem.setAdapter(StockManager.getInstance().getHomeStockAdapter());
+
         return view;
     }
 
+    @Override
+    public String toString() {
+        return TAG;
+    }
 
 }
