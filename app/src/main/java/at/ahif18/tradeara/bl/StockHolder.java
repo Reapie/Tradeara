@@ -1,6 +1,7 @@
 package at.ahif18.tradeara.bl;
 
 import android.text.Layout;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
     private MainActivity mainActivity;
     private Stock stock;
     private ShimmerFrameLayout shimmerFrameLayout;
+    private boolean isShimmer;
 
     public StockHolder(@NonNull View itemView, TextView tvNameStock, TextView tvPriceStock, TextView tvSymbolStock, TextView tvDiffStock, MainActivity mainActivity) {
         super(itemView);
@@ -35,6 +37,7 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
         this.mainActivity = mainActivity;
 
         shimmerFrameLayout = itemView.findViewById(R.id.shimmer_layout);
+
         itemView.setOnClickListener(this);
     }
 
@@ -57,7 +60,9 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        mainActivity.buySellBottomDialog(stock);
+        if(!isShimmer){
+            mainActivity.buySellBottomDialog(stock);
+        }
     }
 
     public void setStock(Stock stock) {
@@ -66,5 +71,13 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
 
     public ShimmerFrameLayout getShimmerFrameLayout() {
         return shimmerFrameLayout;
+    }
+
+    public void setShimmer(boolean shimmer) {
+        isShimmer = shimmer;
+    }
+
+    public boolean isShimmer() {
+        return isShimmer;
     }
 }

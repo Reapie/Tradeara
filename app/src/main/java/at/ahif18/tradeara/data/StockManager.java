@@ -75,11 +75,8 @@ public class StockManager {
             InputStream is = am.open("stocks.csv");
             String[] symbols = new BufferedReader(new InputStreamReader(is)).lines().skip(1).collect(Collectors.toList()).toArray(new String[0]);
             ArrayList<yahoofinance.Stock> stockList = StockGetter.getStocks(symbols);
-            System.out.println(stockList);
 
             stockList.forEach(stock -> stocks.add(new Stock(stock.getName(), stock.getSymbol(), stock.getQuote().getPrice().doubleValue(), 23.5)));
-
-            System.out.println(stocks);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -89,7 +86,6 @@ public class StockManager {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 map = snapshot.getValue(t);
-                System.out.println(map);
 
                 if (map == null || map.isEmpty()) {
                     loadMap(); //init Map

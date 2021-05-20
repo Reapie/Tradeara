@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment homeFragment = new HomeFragment(this);
     private Fragment accountFragment = new AccountFragment(this);
     private Fragment bookFragment = new BookFragment();
+    private boolean stocksLoaded = false;
 
     private List<Fragment> mainFragments;
 
