@@ -34,8 +34,8 @@ public class HelpViewHolder extends RecyclerView.ViewHolder implements RecyclerV
         return HelpText;
     }
 
-    public TextView setLink() {
-        return HelpText;
+    public TextView getLink() {
+        return Link;
     }
 
     public void setTitle(TextView title) {
@@ -46,8 +46,8 @@ public class HelpViewHolder extends RecyclerView.ViewHolder implements RecyclerV
         this.HelpText = HelpText;
     }
 
-    public void setLink(TextView HelpText) {
-        this.HelpText = HelpText;
+    public void setLink(TextView link) {
+        this.Link = link;
     }
 
     @Override

@@ -16,6 +16,7 @@ public class HelpText {
     public String getTitle() { return title; }
 
     public String getDescription() {return descriptions;}
+
     public String getLink() {return link;}
 
 
