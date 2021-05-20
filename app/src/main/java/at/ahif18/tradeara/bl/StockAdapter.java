@@ -57,27 +57,27 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
         if(showShimmer){
             holder.getShimmerFrameLayout().startShimmer();
 
-            Thread t = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    mainActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if(!loaded){
-                                StockManager.getInstance().loadList(mainActivity);
+            if(position == 3){
+                Thread t1 = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mainActivity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(!loaded){
+                                    StockManager.getInstance().loadList(mainActivity);
+                                }
+                                stocks = StockManager.getInstance().getStocks();
+                                stocksAll = new ArrayList<>(stocks);
+                                setShowShimmer(false);
+                                notifyDataSetChanged();
                             }
-                            stocks = StockManager.getInstance().getStocks();
-                            stocksAll = new ArrayList<>(stocks);
-                            setShowShimmer(false);
-                            notifyDataSetChanged();
-                        }
-                    });
-                }
-            });
+                        });
+                    }
+                });
 
-            t.start();
-
-
+                t1.start();
+            }
         }else{
             holder.getShimmerFrameLayout().stopShimmer();
             holder.getShimmerFrameLayout().setShimmer(null);
