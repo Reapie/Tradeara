@@ -25,14 +25,15 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
     private List<Stock> stocks;
     private List<Stock> stocksAll;
     private MainActivity mainActivity;
+    private boolean loaded = false;
 
-    private static boolean showShimmer=true;
+    private boolean showShimmer=true;
     private int SHIMMER_ITEM_NUMBER=5;
 
-    public StockAdapter(MainActivity mainActivity) {
+    public StockAdapter(MainActivity mainActivity, boolean loaded) {
         this.mainActivity = mainActivity;
-
-        stocks = StockManager.getInstance().getStocks();
+        this.loaded = loaded;
+        stocks = new ArrayList<>();
         stocksAll = new ArrayList<>(stocks);
     }
 
@@ -53,9 +54,30 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull StockHolder holder, int position) {
-        showShimmer = false;
         if(showShimmer){
             holder.getShimmerFrameLayout().startShimmer();
+
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    mainActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(!loaded){
+                                StockManager.getInstance().loadList(mainActivity);
+                            }
+                            stocks = StockManager.getInstance().getStocks();
+                            stocksAll = new ArrayList<>(stocks);
+                            setShowShimmer(false);
+                            notifyDataSetChanged();
+                        }
+                    });
+                }
+            });
+
+            t.start();
+
+
         }else{
             holder.getShimmerFrameLayout().stopShimmer();
             holder.getShimmerFrameLayout().setShimmer(null);
@@ -97,7 +119,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
         notifyDataSetChanged();
     }
 
-    public static void setShowShimmer(boolean shimmer) {
-        showShimmer = shimmer;
+    public void setShowShimmer(boolean showShimmer) {
+        this.showShimmer = showShimmer;
     }
 }

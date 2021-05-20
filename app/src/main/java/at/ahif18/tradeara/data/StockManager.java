@@ -109,8 +109,6 @@ public class StockManager {
                     }
                     homeStockAdapter.setStocks(homeStocks);
                 }
-
-
             }
 
             @Override

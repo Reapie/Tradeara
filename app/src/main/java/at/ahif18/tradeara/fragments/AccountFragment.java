@@ -71,7 +71,7 @@ public class AccountFragment extends Fragment {
         tvAccountName.setText(mainActivity.getAccount().getName());
 
         rvUserStock.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvUserStock.setAdapter(new StockAdapter(mainActivity));
+        rvUserStock.setAdapter(new StockAdapter(mainActivity, true));
         return view;
 
     }
