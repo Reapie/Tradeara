@@ -20,7 +20,7 @@ import at.ahif18.tradeara.data.HelpText;
 
 public class HelpAdapter extends RecyclerView.Adapter<HelpViewHolder> {
         private List<HelpText> descriptions = Arrays.asList(
-                new HelpText("Aktienverläufe","https://nolur.com/)")
+                new HelpText("Aktienverläufe","Klicken sie auf diesen Container um auf eine Hilfreiche Seite für Aktien zu bekommen","https://nolur.com/)")
         );
 
     @NonNull
@@ -30,8 +30,9 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpViewHolder> {
 
             TextView tvtitle = view.findViewById(R.id.tvTitle);
             TextView tvdescription = view.findViewById(R.id.tvDescription);
+            TextView tvLink = view.findViewById(R.id.tvLink);
 
-            return new HelpViewHolder(view,tvtitle,tvdescription);
+            return new HelpViewHolder(view,tvtitle,tvdescription,tvLink);
         }
 
         @Override

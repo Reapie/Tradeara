@@ -15,9 +15,10 @@ public class HelpViewHolder extends RecyclerView.ViewHolder implements RecyclerV
 
     private TextView title;
     private TextView HelpText;
+    private TextView Link;
 
 
-    public HelpViewHolder(@NonNull View itemView,TextView title, TextView tvDescription) {
+    public HelpViewHolder(@NonNull View itemView,TextView title, TextView tvDescription, TextView link) {
         super(itemView);
         this.title = title;
         this.HelpText = tvDescription;
@@ -32,6 +33,10 @@ public class HelpViewHolder extends RecyclerView.ViewHolder implements RecyclerV
         return HelpText;
     }
 
+    public TextView setLink() {
+        return HelpText;
+    }
+
     public void setTitle(TextView title) {
         this.title = title;
     }
@@ -40,10 +45,13 @@ public class HelpViewHolder extends RecyclerView.ViewHolder implements RecyclerV
         this.HelpText = HelpText;
     }
 
+    public void setLink(TextView HelpText) {
+        this.HelpText = HelpText;
+    }
+
     @Override
     public void onClick(View v) {
-
-        Intent intent = new Intent ("android.intent.action.VIEW", Uri.parse(HelpText.getText().toString()));
+        Intent intent = new Intent ("android.intent.action.VIEW", Uri.parse(Link.getText().toString()));
         v.getContext().startActivity(intent);
     }
 }
