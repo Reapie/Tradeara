@@ -85,7 +85,7 @@ public class SearchFragment extends Fragment {
         rvListSearchStock.setHasFixedSize(true);
         rvListSearchStock.setLayoutManager(new LinearLayoutManager(mainActivity));
 
-        StockAdapter stockAdapter = new StockAdapter(mainActivity);
+        StockAdapter stockAdapter = new StockAdapter(mainActivity, true);
         rvListSearchStock.setAdapter(stockAdapter);
 
         svSearch = view.findViewById(R.id.svSearch);
