@@ -26,6 +26,7 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
     private MainActivity mainActivity;
     private Stock stock;
     private ShimmerFrameLayout shimmerFrameLayout;
+    private boolean isShimmer;
 
     public StockHolder(@NonNull View itemView, TextView tvNameStock, TextView tvPriceStock, TextView tvSymbolStock, TextView tvDiffStock, MainActivity mainActivity) {
         super(itemView);
@@ -59,7 +60,9 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        mainActivity.buySellBottomDialog(stock);
+        if(!isShimmer){
+            mainActivity.buySellBottomDialog(stock);
+        }
     }
 
     public void setStock(Stock stock) {
@@ -68,5 +71,13 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
 
     public ShimmerFrameLayout getShimmerFrameLayout() {
         return shimmerFrameLayout;
+    }
+
+    public void setShimmer(boolean shimmer) {
+        isShimmer = shimmer;
+    }
+
+    public boolean isShimmer() {
+        return isShimmer;
     }
 }

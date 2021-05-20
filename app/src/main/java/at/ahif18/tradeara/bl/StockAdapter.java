@@ -56,6 +56,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
     public void onBindViewHolder(@NonNull StockHolder holder, int position) {
         if(showShimmer){
             holder.getShimmerFrameLayout().startShimmer();
+            holder.setShimmer(true);
 
             if(position == 3){
                 Thread t1 = new Thread(new Runnable() {
@@ -66,6 +67,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
                             public void run() {
                                 if(!loaded){
                                     StockManager.getInstance().loadList(mainActivity);
+                                    loaded = true;
                                 }
                                 stocks = StockManager.getInstance().getStocks();
                                 stocksAll = new ArrayList<>(stocks);
@@ -79,6 +81,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
                 t1.start();
             }
         }else{
+            holder.setShimmer(false);
             holder.getShimmerFrameLayout().stopShimmer();
             holder.getShimmerFrameLayout().setShimmer(null);
 
