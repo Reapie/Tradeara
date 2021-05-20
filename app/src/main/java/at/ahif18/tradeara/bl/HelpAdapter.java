@@ -20,7 +20,7 @@ import at.ahif18.tradeara.data.HelpText;
 
 public class HelpAdapter extends RecyclerView.Adapter<HelpViewHolder> {
         private List<HelpText> descriptions = Arrays.asList(
-                new HelpText("Aktienverläufe","Klicken sie auf diesen Container um auf eine Hilfreiche Seite für Aktien zu bekommen","https://nolur.com/)")
+                new HelpText("Aktienverläufe","Klicken sie auf diesen Container um auf eine Hilfreiche Seite für Aktien zu bekommen","https://www.sparkasse.de/themen/wertpapiere-als-geldanlage/10-tipps-aktienanfaenger.html")
         );
 
     @NonNull
