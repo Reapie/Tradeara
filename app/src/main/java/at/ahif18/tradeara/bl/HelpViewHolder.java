@@ -22,6 +22,7 @@ public class HelpViewHolder extends RecyclerView.ViewHolder implements RecyclerV
         super(itemView);
         this.title = title;
         this.HelpText = tvDescription;
+        this.Link = link;
         itemView.setOnClickListener(this);
     }
 
