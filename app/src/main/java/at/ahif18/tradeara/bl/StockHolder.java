@@ -1,6 +1,7 @@
 package at.ahif18.tradeara.bl;
 
 import android.text.Layout;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
         this.mainActivity = mainActivity;
 
         shimmerFrameLayout = itemView.findViewById(R.id.shimmer_layout);
+
         itemView.setOnClickListener(this);
     }
 
