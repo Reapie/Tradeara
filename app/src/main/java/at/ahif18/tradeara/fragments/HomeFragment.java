@@ -17,7 +17,7 @@ import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.bl.StockAdapter;
 import at.ahif18.tradeara.data.StockManager;
 
-public class    HomeFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
     private static final String TAG = "HomeFragment";
     private static final String ARG_PARAM1 = "param1";
