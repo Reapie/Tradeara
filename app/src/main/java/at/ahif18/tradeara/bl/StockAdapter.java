@@ -25,17 +25,16 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
     private List<Stock> stocks;
     private List<Stock> stocksAll;
     private MainActivity mainActivity;
-    private boolean loaded = false;
 
     private boolean showShimmer=true;
-    private int SHIMMER_ITEM_NUMBER=5;
+    private int SHIMMER_ITEM_NUMBER=4;
 
-    public StockAdapter(MainActivity mainActivity, boolean loaded) {
+    public StockAdapter(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
-        this.loaded = loaded;
         stocks = new ArrayList<>();
         stocksAll = new ArrayList<>(stocks);
     }
+
 
     //private List<Stock> stocks = StockGetter.getStocks("INTC","TSLA");
     //float price = stocks.get(0).getQuote().getPrice() Preis kann andere währung haben
@@ -57,31 +56,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
         if(showShimmer){
             holder.getShimmerFrameLayout().startShimmer();
             holder.setShimmer(true);
-
-            if(position == 3){
-                Thread t1 = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mainActivity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if(!loaded){
-                                    StockManager.getInstance().loadList(mainActivity);
-                                    loaded = true;
-                                }
-                                stocks = StockManager.getInstance().getStocks();
-                                stocksAll = new ArrayList<>(stocks);
-                                setShowShimmer(false);
-                                notifyDataSetChanged();
-                            }
-                        });
-                    }
-                });
-
-                t1.start();
-            }
         }else{
-            holder.setShimmer(false);
             holder.getShimmerFrameLayout().stopShimmer();
             holder.getShimmerFrameLayout().setShimmer(null);
 
@@ -98,8 +73,9 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
             holder.getTvDiffStock().setText(String.format("%s", stock.getDiff()));
             holder.getTvDiffStock().setTextColor(stock.getDiff() < 0 ? Color.RED : Color.GREEN);
         }
-
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -122,7 +98,12 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
         notifyDataSetChanged();
     }
 
+    public void setStocksAll(List<Stock> stocksAll) {
+        this.stocksAll = stocksAll;
+    }
+
     public void setShowShimmer(boolean showShimmer) {
         this.showShimmer = showShimmer;
+        notifyDataSetChanged();
     }
 }

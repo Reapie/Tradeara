@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
     private Fragment bookFragment = new BookFragment();
     private boolean stocksLoaded = false;
 
+    private BottomNavigationView bottomNavigationView;
+    private boolean isSwitchable;
+
     private List<Fragment> mainFragments;
 
     private TextView tvCash;
@@ -66,32 +69,35 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        isSwitchable = true;
 
         mainFragments = Arrays.asList(searchFragment, depotFragment, homeFragment, accountFragment, bookFragment);
         ivLogo = findViewById(R.id.ivLogo);
         tvCash = findViewById(R.id.tvCash);
 
         makeCurrentFragment(homeFragment);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.ic_home);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.ic_search:
-                    makeCurrentFragment(searchFragment);
-                    return true;
-                case R.id.ic_depot:
-                    makeCurrentFragment(depotFragment);
-                    return true;
-                case R.id.ic_home:
-                    makeCurrentFragment(homeFragment);
-                    return true;
-                case R.id.ic_account:
-                    makeCurrentFragment(accountFragment);
-                    return true;
-                case R.id.ic_book:
-                    makeCurrentFragment(bookFragment);
-                    return true;
+            if(isSwitchable){
+                switch (item.getItemId()) {
+                    case R.id.ic_search:
+                        makeCurrentFragment(searchFragment);
+                        return true;
+                    case R.id.ic_depot:
+                        makeCurrentFragment(depotFragment);
+                        return true;
+                    case R.id.ic_home:
+                        makeCurrentFragment(homeFragment);
+                        return true;
+                    case R.id.ic_account:
+                        makeCurrentFragment(accountFragment);
+                        return true;
+                    case R.id.ic_book:
+                        makeCurrentFragment(bookFragment);
+                        return true;
+                }
             }
             return false;
         });
@@ -141,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
             FragmentManager fragments = getSupportFragmentManager();
             fragments.popBackStack();
             makeCurrentFragment(homeFragment);
-            BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+            bottomNavigationView = findViewById(R.id.bottom_navigation);
             bottomNavigationView.setSelectedItemId(R.id.ic_home);
         } else {
             finish();
@@ -165,6 +171,10 @@ public class MainActivity extends AppCompatActivity {
         BuySellFragment buySellFragment = BuySellFragment.newInstance(stock);
         buySellFragment.show(getSupportFragmentManager(), "buy_sell_fragment");
         buySellFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.BottomSheetDialogTheme);
+    }
+
+    public void setNavStatus(boolean status){
+        isSwitchable = status;
     }
 
 }

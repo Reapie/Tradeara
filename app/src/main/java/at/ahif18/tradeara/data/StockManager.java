@@ -46,6 +46,7 @@ public class StockManager {
     private List<Stock> stocks;
 
     private StockAdapter homeStockAdapter;
+    private boolean homeStockAdapterSet;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference().child("StockList");
@@ -56,6 +57,7 @@ public class StockManager {
     private StockManager() {
         map = new HashMap<>();
         stocks = new ArrayList<>();
+        homeStockAdapterSet = false;
         //loadMap();
     }
 
@@ -158,6 +160,7 @@ public class StockManager {
 
     public void setHomeStockAdapter(StockAdapter homeStockAdapter) {
         this.homeStockAdapter = homeStockAdapter;
+        homeStockAdapterSet = true;
     }
 
     public StockAdapter getHomeStockAdapter() {
@@ -177,6 +180,9 @@ public class StockManager {
                     .decode(value));
             System.out.println(decode);
             return decode;
+    }
 
+    public boolean isHomeStockAdapterSet() {
+        return homeStockAdapterSet;
     }
 }
