@@ -12,8 +12,11 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
+import at.ahif18.tradeara.bl.LoadStocksTask;
 import at.ahif18.tradeara.bl.StockAdapter;
 
 /**
@@ -29,6 +32,8 @@ public class AccountFragment extends Fragment {
 
     RecyclerView rvUserStock;
     private static MainActivity mainActivity;
+    private LoadStocksTask loadStocksTask;
+    private TextView tvtraining;
 
     public AccountFragment(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -56,7 +61,10 @@ public class AccountFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
+        loadStocksTask = new LoadStocksTask(mainActivity, false);
+        loadStocksTask.execute();
     }
 
     @Override
@@ -64,14 +72,18 @@ public class AccountFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_account, container, false);
+        tvtraining = view.findViewById(R.id.tvTraining);
         rvUserStock = view.findViewById(R.id.rvUserStock);
-        rvUserStock.setHasFixedSize(true);
 
+        rvUserStock.setHasFixedSize(true);
         TextView tvAccountName = view.findViewById(R.id.tvName);
         tvAccountName.setText(mainActivity.getAccount().getName());
 
         rvUserStock.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvUserStock.setAdapter(new StockAdapter(mainActivity, true));
+        rvUserStock.setAdapter(loadStocksTask.getStockAdapter());
+
+        tvtraining.setOnClickListener(v -> mainActivity.makeCurrentFragment(new TrainingsModeFragement()));
+
         return view;
 
     }
