@@ -2,7 +2,6 @@ package at.ahif18.tradeara.bl;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

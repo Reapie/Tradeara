@@ -1,13 +1,19 @@
 package at.ahif18.tradeara;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v4.app.*;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -35,6 +42,7 @@ import at.ahif18.tradeara.fragments.BuySellFragment;
 import at.ahif18.tradeara.fragments.DepotFragment;
 import at.ahif18.tradeara.fragments.HomeFragment;
 import at.ahif18.tradeara.fragments.SearchFragment;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -101,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
         prefManager = new PrefManager(this, this);
         prefManager.getOrCreate();
+
     }
 
     public void setAccount(Account acc) {
