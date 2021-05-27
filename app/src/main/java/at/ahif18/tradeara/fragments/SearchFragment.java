@@ -23,6 +23,7 @@ import java.util.HashMap;
 
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
+import at.ahif18.tradeara.bl.LoadStocksTask;
 import at.ahif18.tradeara.bl.StockAdapter;
 import at.ahif18.tradeara.bl.StockGetter;
 import at.ahif18.tradeara.data.Stock;
@@ -38,6 +39,7 @@ public class SearchFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private static MainActivity mainActivity;
+    private LoadStocksTask loadStocksTask;
 
     public SearchFragment(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -68,7 +70,8 @@ public class SearchFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
+        loadStocksTask = new LoadStocksTask(mainActivity, false);
+        loadStocksTask.execute();
     }
 
     private RecyclerView rvListSearchStock;
@@ -85,7 +88,7 @@ public class SearchFragment extends Fragment {
         rvListSearchStock.setHasFixedSize(true);
         rvListSearchStock.setLayoutManager(new LinearLayoutManager(mainActivity));
 
-        StockAdapter stockAdapter = new StockAdapter(mainActivity, true);
+        StockAdapter stockAdapter = loadStocksTask.getStockAdapter();
         rvListSearchStock.setAdapter(stockAdapter);
 
         svSearch = view.findViewById(R.id.svSearch);

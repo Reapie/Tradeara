@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
+import at.ahif18.tradeara.bl.LoadStocksTask;
 import at.ahif18.tradeara.bl.StockAdapter;
 
 /**
@@ -29,6 +30,7 @@ public class AccountFragment extends Fragment {
 
     RecyclerView rvUserStock;
     private static MainActivity mainActivity;
+    private LoadStocksTask loadStocksTask;
 
     public AccountFragment(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -57,6 +59,9 @@ public class AccountFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        loadStocksTask = new LoadStocksTask(mainActivity, false);
+        loadStocksTask.execute();
     }
 
     @Override
@@ -66,12 +71,12 @@ public class AccountFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
         rvUserStock = view.findViewById(R.id.rvUserStock);
         rvUserStock.setHasFixedSize(true);
+        rvUserStock.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvUserStock.setAdapter(loadStocksTask.getStockAdapter());
 
         TextView tvAccountName = view.findViewById(R.id.tvName);
         tvAccountName.setText(mainActivity.getAccount().getName());
 
-        rvUserStock.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvUserStock.setAdapter(new StockAdapter(mainActivity, true));
         return view;
 
     }

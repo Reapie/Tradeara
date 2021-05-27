@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
+import at.ahif18.tradeara.bl.LoadStocksTask;
 import at.ahif18.tradeara.bl.StockAdapter;
 import at.ahif18.tradeara.data.StockManager;
 
@@ -51,9 +52,8 @@ public class    HomeFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        StockAdapter stockAdapter = new StockAdapter(mainActivity, false);
-        StockManager.getInstance().setHomeStockAdapter(stockAdapter);
-
+        LoadStocksTask loadStocksTask = new LoadStocksTask(mainActivity, true);
+        loadStocksTask.execute();
     }
 
     @Override
