@@ -1,6 +1,7 @@
 package at.ahif18.tradeara.bl;
 
 import android.text.Layout;
+import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,8 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
         this.tvSymbolStock = tvSymbolStock;
         this.tvDiffStock = tvDiffStock;
         this.mainActivity = mainActivity;
+
+        this.tvNameStock.setSelected(true);     // marquee only works with this, i dont know why, dont touch it!
 
         shimmerFrameLayout = itemView.findViewById(R.id.shimmer_layout);
 

@@ -25,7 +25,8 @@
             <TextView
                 android:id="@+id/tvShimmerNameStock"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:maxWidth="160dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="5sp"
                 android:layout_marginTop="5sp"
                 android:layout_marginEnd="5sp"
@@ -34,6 +35,10 @@
                 android:backgroundTint="@color/shimmer_bg"
                 android:text="Tesla, Inc."
                 android:textColor="@color/shimmer_bg"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
                 android:textSize="24sp" />
 
             <TextView
@@ -79,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="6dp"
                 android:backgroundTint="@color/shimmer_bg"
                 android:background="@drawable/rounded_corners"
                 android:padding="50dp" />
