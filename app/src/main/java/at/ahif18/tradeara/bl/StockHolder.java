@@ -54,7 +54,6 @@ public class StockHolder extends RecyclerView.ViewHolder implements View.OnClick
 
     public TextView getTvSymbolStock() {
         return tvSymbolStock;
-
     }
 
     public TextView getTvDiffStock() {
