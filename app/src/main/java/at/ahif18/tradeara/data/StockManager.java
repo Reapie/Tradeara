@@ -12,8 +12,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -36,6 +34,7 @@ import java.util.stream.Stream;
 
 import at.ahif18.tradeara.bl.StockAdapter;
 import at.ahif18.tradeara.bl.StockGetter;
+import at.ahif18.tradeara.stock.StockLauncher;
 import yahoofinance.YahooFinance;
 import yahoofinance.histquotes.Interval;
 
@@ -76,7 +75,8 @@ public class StockManager {
         try {
             InputStream is = am.open("stocks.csv");
             String[] symbols = new BufferedReader(new InputStreamReader(is)).lines().skip(1).collect(Collectors.toList()).toArray(new String[0]);
-            ArrayList<yahoofinance.Stock> stockList = StockGetter.getStocks(symbols);
+            //ArrayList<yahoofinance.Stock> stockList = StockGetter.getStocks(symbols);
+            ArrayList<yahoofinance.Stock> stockList = StockLauncher.getStocks(symbols);
 
             stockList.forEach(stock -> stocks.add(new Stock(stock.getName(), stock.getSymbol(), stock.getQuote().getPrice().doubleValue(), 23.5)));
         } catch (IOException e) {
