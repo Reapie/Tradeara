@@ -1,5 +1,6 @@
 package at.ahif18.tradeara.fragments;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.data.Stock;
@@ -29,6 +31,7 @@ public class BuyPopUpFragment extends DialogFragment {
     public BuyPopUpFragment() {
 
     }
+
 
     public static BuyPopUpFragment newInstance(Stock stock) {
         BuyPopUpFragment fragment = new BuyPopUpFragment();
@@ -54,6 +57,13 @@ public class BuyPopUpFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_buy_pop_up, container, false);
+        TextView tvBuyStockName = view.findViewById(R.id.tvBuyStockName);
+        TextView tvBuyStockSymbol = view.findViewById(R.id.tvBuyStockSymbol);
+
+        tvBuyStockName.setText(stockName);
+        tvBuyStockSymbol.setText(stockSymbol);
+
+        tvBuyStockName.setSelected(true);
 
         return view;
     }
