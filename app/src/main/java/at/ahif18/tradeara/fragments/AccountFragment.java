@@ -30,10 +30,11 @@ public class AccountFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    RecyclerView rvUserStock;
+    private RecyclerView rvUserStock;
     private static MainActivity mainActivity;
     private LoadStocksTask loadStocksTask;
     private TextView tvtraining;
+    private RelativeLayout layout;
 
     public AccountFragment(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -73,7 +74,9 @@ public class AccountFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_account, container, false);
         tvtraining = view.findViewById(R.id.tvTraining);
+
         rvUserStock = view.findViewById(R.id.rvUserStock);
+        layout = view.findViewById(R.id.RelativeTraining);
 
         rvUserStock.setHasFixedSize(true);
         TextView tvAccountName = view.findViewById(R.id.tvName);
@@ -82,7 +85,7 @@ public class AccountFragment extends Fragment {
         rvUserStock.setLayoutManager(new LinearLayoutManager(getContext()));
         rvUserStock.setAdapter(loadStocksTask.getStockAdapter());
 
-        tvtraining.setOnClickListener(v -> mainActivity.makeCurrentFragment(new TrainingsModeFragement()));
+        layout.setOnClickListener(v -> mainActivity.makeCurrentFragment(new TrainingsModeFragement()));
 
         return view;
 
