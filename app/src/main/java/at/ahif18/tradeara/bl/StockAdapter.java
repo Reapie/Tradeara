@@ -57,6 +57,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
             holder.getShimmerFrameLayout().startShimmer();
             holder.setShimmer(true);
         }else{
+            holder.setShimmer(false);
             holder.getShimmerFrameLayout().stopShimmer();
             holder.getShimmerFrameLayout().setShimmer(null);
 
