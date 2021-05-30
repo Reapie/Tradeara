@@ -66,6 +66,8 @@ public class BuySellFragment extends BottomSheetDialogFragment {
         TextView tvStockName = view.findViewById(R.id.tvStockName);
         TextView tvStockSymbol = view.findViewById(R.id.tvStockSymbol);
 
+        tvStockName.setSelected(true);
+
         tvStockName.setText(stockName);
         tvStockSymbol.setText(stockSymbol);
 
