@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10sp"
+    android:background="@drawable/rounded_corners"
+    android:backgroundTint="#FFFFFF"
+    android:padding="20sp"
     tools:context=".fragments.BuyPopUpFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tvBuyStockName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="20sp" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tvBuyStockSymbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tvBuyStockName"
+        android:text="TextView"
+        android:textColor="#000000" />
+
+    <SeekBar
+        android:id="@+id/sbAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvBuyStockName"
+        android:backgroundTintMode="add"
+        android:progressBackgroundTint="#000000"
+        android:progressBackgroundTintMode="add" />
+</RelativeLayout>

@@ -74,7 +74,7 @@ public class StockManager {
         AssetManager am = context.getAssets();
         try {
             InputStream is = am.open("stocks.csv");
-            String[] symbols = new BufferedReader(new InputStreamReader(is)).lines().skip(1).collect(Collectors.toList()).toArray(new String[0]);
+            String[] symbols = new BufferedReader(new InputStreamReader(is)).lines().skip(1).filter(s -> !s.isEmpty()).collect(Collectors.toList()).toArray(new String[0]);
             //ArrayList<yahoofinance.Stock> stockList = StockGetter.getStocks(symbols);
             ArrayList<yahoofinance.Stock> stockList = StockLauncher.getStocks(symbols);
 
