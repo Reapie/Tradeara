@@ -23,8 +23,8 @@ public class StockLauncher {
     public static ArrayList<Stock> getStocks(String... stockSymbols) {
         ArrayList<Stock> stocks = new ArrayList();
 
-        //ExecutorService pool = Executors.newFixedThreadPool(10);
-        ExecutorService pool = Executors.newCachedThreadPool();
+        ExecutorService pool = Executors.newFixedThreadPool(10);
+        //ExecutorService pool = Executors.newCachedThreadPool();
         List<Callable<Stock>> workerlist = new ArrayList<>();
 
         for (String stockSymbol : stockSymbols) {
