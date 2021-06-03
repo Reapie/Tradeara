@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.data.Stock;
 import at.ahif18.tradeara.data.StockManager;
@@ -31,15 +32,16 @@ public class BuySellFragment extends BottomSheetDialogFragment {
     private Button btnSell;
 
     private Stock stock;
+    private MainActivity mainActivity;
 
-    public BuySellFragment(Stock stock) {
-        this.stock = stock;
+    public BuySellFragment(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
     }
 
 
     
-    public static BuySellFragment newInstance(Stock stock) {
-        BuySellFragment fragment = new BuySellFragment(stock);
+    public static BuySellFragment newInstance(Stock stock, MainActivity mainActivity) {
+        BuySellFragment fragment = new BuySellFragment(mainActivity);
         Bundle args = new Bundle();
         args.putParcelable(ARG_PARAM_STOCK, stock);
         fragment.setArguments(args);
@@ -75,7 +77,7 @@ public class BuySellFragment extends BottomSheetDialogFragment {
         btnSell = view.findViewById(R.id.btnSell);
 
         btnBuy.setOnClickListener(v -> {
-            BuyPopUpFragment buyPopUpFragment = BuyPopUpFragment.newInstance(stock);
+            BuyPopUpFragment buyPopUpFragment = BuyPopUpFragment.newInstance(stock, mainActivity);
             buyPopUpFragment.show(getFragmentManager(), buyPopUpFragment.getTag());
             StockManager.getInstance().increase(stock.getName());
         });

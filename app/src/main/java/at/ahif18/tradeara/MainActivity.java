@@ -16,6 +16,8 @@ import android.content.SharedPreferences;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -44,7 +46,7 @@ import at.ahif18.tradeara.fragments.HomeFragment;
 import at.ahif18.tradeara.fragments.SearchFragment;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     private static final String TAG = "MainActivity";
 
@@ -168,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buySellBottomDialog (Stock stock){
-        BuySellFragment buySellFragment = BuySellFragment.newInstance(stock);
+        BuySellFragment buySellFragment = BuySellFragment.newInstance(stock, this);
         buySellFragment.show(getSupportFragmentManager(), "buy_sell_fragment");
         buySellFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.BottomSheetDialogTheme);
     }
@@ -176,5 +178,4 @@ public class MainActivity extends AppCompatActivity {
     public void setNavStatus(boolean status){
         isSwitchable = status;
     }
-
 }
