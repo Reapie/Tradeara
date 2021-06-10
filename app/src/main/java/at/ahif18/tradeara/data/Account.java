@@ -1,17 +1,26 @@
 package at.ahif18.tradeara.data;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import at.ahif18.tradeara.MainActivity;
+import at.ahif18.tradeara.bl.StockAdapter;
 
 public class Account {
+    private MainActivity mainActivity;
     public static double START_BALANCE = 40000;
     private double balance;
     private HashMap<Stock, Integer> stocks;
     private String name;
 
-    public Account(String name) {
+    public Account(String name, MainActivity mainActivity) {
         this.balance = START_BALANCE;
         this.stocks = new HashMap();
         this.name = name;
+        this.mainActivity = mainActivity;
     }
 
     public double getBalance(){
@@ -38,5 +47,11 @@ public class Account {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public StockAdapter getStockAdapter() {
+        StockAdapter sa = new StockAdapter(mainActivity);
+        sa.setStocks(new ArrayList<>(stocks.keySet()));
+        return sa;
     }
 }

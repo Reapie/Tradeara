@@ -1,21 +1,30 @@
 package at.ahif18.tradeara;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v4.app.*;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -36,7 +45,8 @@ import at.ahif18.tradeara.fragments.DepotFragment;
 import at.ahif18.tradeara.fragments.HomeFragment;
 import at.ahif18.tradeara.fragments.SearchFragment;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity{
 
     private static final String TAG = "MainActivity";
 
@@ -46,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
     private Fragment accountFragment = new AccountFragment(this);
     private Fragment bookFragment = new BookFragment();
     private boolean stocksLoaded = false;
+
+    private BottomNavigationView bottomNavigationView;
+    private boolean isSwitchable;
 
     private List<Fragment> mainFragments;
 
@@ -58,32 +71,35 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        isSwitchable = true;
 
         mainFragments = Arrays.asList(searchFragment, depotFragment, homeFragment, accountFragment, bookFragment);
         ivLogo = findViewById(R.id.ivLogo);
         tvCash = findViewById(R.id.tvCash);
 
         makeCurrentFragment(homeFragment);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.ic_home);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.ic_search:
-                    makeCurrentFragment(searchFragment);
-                    return true;
-                case R.id.ic_depot:
-                    makeCurrentFragment(depotFragment);
-                    return true;
-                case R.id.ic_home:
-                    makeCurrentFragment(homeFragment);
-                    return true;
-                case R.id.ic_account:
-                    makeCurrentFragment(accountFragment);
-                    return true;
-                case R.id.ic_book:
-                    makeCurrentFragment(bookFragment);
-                    return true;
+            if(isSwitchable){
+                switch (item.getItemId()) {
+                    case R.id.ic_search:
+                        makeCurrentFragment(searchFragment);
+                        return true;
+                    case R.id.ic_depot:
+                        makeCurrentFragment(depotFragment);
+                        return true;
+                    case R.id.ic_home:
+                        makeCurrentFragment(homeFragment);
+                        return true;
+                    case R.id.ic_account:
+                        makeCurrentFragment(accountFragment);
+                        return true;
+                    case R.id.ic_book:
+                        makeCurrentFragment(bookFragment);
+                        return true;
+                }
             }
             return false;
         });
@@ -101,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
         prefManager = new PrefManager(this, this);
         prefManager.getOrCreate();
+
     }
 
     public void setAccount(Account acc) {
@@ -132,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
             FragmentManager fragments = getSupportFragmentManager();
             fragments.popBackStack();
             makeCurrentFragment(homeFragment);
-            BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+            bottomNavigationView = findViewById(R.id.bottom_navigation);
             bottomNavigationView.setSelectedItemId(R.id.ic_home);
         } else {
             finish();
@@ -153,9 +170,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buySellBottomDialog (Stock stock){
-        BuySellFragment buySellFragment = BuySellFragment.newInstance(stock);
+        BuySellFragment buySellFragment = BuySellFragment.newInstance(stock, this);
         buySellFragment.show(getSupportFragmentManager(), "buy_sell_fragment");
         buySellFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.BottomSheetDialogTheme);
     }
 
+    public void setNavStatus(boolean status){
+        isSwitchable = status;
+    }
 }

@@ -12,9 +12,13 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
+import at.ahif18.tradeara.bl.LoadStocksTask;
 import at.ahif18.tradeara.bl.StockAdapter;
+import at.ahif18.tradeara.data.Account;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,8 +31,11 @@ public class AccountFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    RecyclerView rvUserStock;
+    private RecyclerView rvUserStock;
     private static MainActivity mainActivity;
+    private LoadStocksTask loadStocksTask;
+    private TextView tvtraining;
+    private RelativeLayout layout;
 
     public AccountFragment(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -56,7 +63,10 @@ public class AccountFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
+        loadStocksTask = new LoadStocksTask(mainActivity, false);
+        loadStocksTask.execute();
     }
 
     @Override
@@ -64,14 +74,21 @@ public class AccountFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_account, container, false);
-        rvUserStock = view.findViewById(R.id.rvUserStock);
-        rvUserStock.setHasFixedSize(true);
+        tvtraining = view.findViewById(R.id.tvTraining);
 
+        rvUserStock = view.findViewById(R.id.rvUserStock);
+        layout = view.findViewById(R.id.RelativeTraining);
+
+        rvUserStock.setHasFixedSize(true);
         TextView tvAccountName = view.findViewById(R.id.tvName);
         tvAccountName.setText(mainActivity.getAccount().getName());
 
         rvUserStock.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvUserStock.setAdapter(new StockAdapter(mainActivity, true));
+        Account account = mainActivity.getAccount();
+        rvUserStock.setAdapter(loadStocksTask.getStockAdapter());
+
+        layout.setOnClickListener(v -> mainActivity.makeCurrentFragment(new TrainingsModeFragement()));
+
         return view;
 
     }

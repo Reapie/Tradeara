@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
@@ -51,7 +52,7 @@ public class PrefManager {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     String name = input.getText().toString();
-                    Account acc = new Account(name);
+                    Account acc = new Account(name, main);
                     setAccount(acc);
                     SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
                     prefsEditor.putString(ACCOUNT_NAME_KEY, name);
@@ -64,7 +65,7 @@ public class PrefManager {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     String name = "none";
-                    Account acc = new Account(name);
+                    Account acc = new Account(name, main);
                     setAccount(acc);
                     SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
                     prefsEditor.putString(ACCOUNT_NAME_KEY, name);
@@ -81,8 +82,7 @@ public class PrefManager {
 
     public void setAccount(Account acc) {
         SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(acc);
+        String json = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(acc);
         System.out.println(json);
         prefsEditor.putString(ACCOUNT_KEY, json);
         prefsEditor.putString(ACCOUNT_NAME_KEY, acc.getName());

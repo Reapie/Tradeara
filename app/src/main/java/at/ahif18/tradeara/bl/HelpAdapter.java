@@ -21,8 +21,20 @@ import at.ahif18.tradeara.data.HelpText;
 public class HelpAdapter extends RecyclerView.Adapter<HelpViewHolder> {
         private List<HelpText> descriptions = Arrays.asList(
                 new HelpText("Aktienverläufe","Klicken sie auf diesen Container um " +
-                        "auf eine Hilfreiche Seite für Aktien zu bekommen",
-                        "https://www.sparkasse.de/themen/wertpapiere-als-geldanlage/10-tipps-aktienanfaenger.html")
+                        "auf eine Hilfreiche Seite für Aktien zu kommen",
+                        "https://www.sparkasse.de/themen/wertpapiere-als-" +
+                                "geldanlage/10-tipps-aktienanfaenger.html"),
+
+                new HelpText("Arten von Aktien","Website für Verschiedene Arten von Aktien",
+                                     "https://www.zinsenvergleich.at/aktie-ist-" +
+                                             "nicht-gleich-aktie-verschiedene-arten-von-" +
+                                             "aktien-im-ueberblick-2966/"),
+
+                new HelpText("Wie enstehen Aktien",
+                        "Einen Artikel von Enstehungen von Aktien sehen",
+                        "https://www.diekleinanleger.com/folge-21-der-" +
+                                "kurs-einer-aktie-aktien-teil-2/#:~:text=Der%20Kurs%20einer%20" +
+                                "Aktie%20entsteht,der%20Kurs%20auf%2010%20%E2%82%AC.")
 
         );
 

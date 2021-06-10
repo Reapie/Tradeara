@@ -9,7 +9,6 @@ public class Stock implements Parcelable {
     private String name;
     private String symbol;
     private double price;
-
     private double diff;
 
     //private double minPrice;

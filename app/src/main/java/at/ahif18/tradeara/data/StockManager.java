@@ -12,8 +12,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -36,6 +34,7 @@ import java.util.stream.Stream;
 
 import at.ahif18.tradeara.bl.StockAdapter;
 import at.ahif18.tradeara.bl.StockGetter;
+import at.ahif18.tradeara.stock.StockLauncher;
 import yahoofinance.YahooFinance;
 import yahoofinance.histquotes.Interval;
 
@@ -46,6 +45,7 @@ public class StockManager {
     private List<Stock> stocks;
 
     private StockAdapter homeStockAdapter;
+    private boolean homeStockAdapterSet;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference().child("StockList");
@@ -56,6 +56,7 @@ public class StockManager {
     private StockManager() {
         map = new HashMap<>();
         stocks = new ArrayList<>();
+        homeStockAdapterSet = false;
         //loadMap();
     }
 
@@ -73,8 +74,9 @@ public class StockManager {
         AssetManager am = context.getAssets();
         try {
             InputStream is = am.open("stocks.csv");
-            String[] symbols = new BufferedReader(new InputStreamReader(is)).lines().skip(1).collect(Collectors.toList()).toArray(new String[0]);
-            ArrayList<yahoofinance.Stock> stockList = StockGetter.getStocks(symbols);
+            String[] symbols = new BufferedReader(new InputStreamReader(is)).lines().skip(1).filter(s -> !s.isEmpty()).collect(Collectors.toList()).toArray(new String[0]);
+            //ArrayList<yahoofinance.Stock> stockList = StockGetter.getStocks(symbols);
+            ArrayList<yahoofinance.Stock> stockList = StockLauncher.getStocks(symbols);
 
             stockList.forEach(stock -> stocks.add(new Stock(stock.getName(), stock.getSymbol(), stock.getQuote().getPrice().doubleValue(), 23.5)));
         } catch (IOException e) {
@@ -158,6 +160,7 @@ public class StockManager {
 
     public void setHomeStockAdapter(StockAdapter homeStockAdapter) {
         this.homeStockAdapter = homeStockAdapter;
+        homeStockAdapterSet = true;
     }
 
     public StockAdapter getHomeStockAdapter() {
@@ -177,6 +180,9 @@ public class StockManager {
                     .decode(value));
             System.out.println(decode);
             return decode;
+    }
 
+    public boolean isHomeStockAdapterSet() {
+        return homeStockAdapterSet;
     }
 }
