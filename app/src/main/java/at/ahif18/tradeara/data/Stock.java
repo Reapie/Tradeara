@@ -44,6 +44,8 @@ public class Stock implements Parcelable {
         return String.format("%,.2f", price) + " EUR";
     }
 
+    public String getFormattedPercent () { return String.format("%.2f", diff) + " %";}
+
     public String getName() {
         return name;
     }
