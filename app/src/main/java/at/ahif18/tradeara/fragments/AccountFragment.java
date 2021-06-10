@@ -18,6 +18,7 @@ import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.bl.LoadStocksTask;
 import at.ahif18.tradeara.bl.StockAdapter;
+import at.ahif18.tradeara.data.Account;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,6 +84,7 @@ public class AccountFragment extends Fragment {
         tvAccountName.setText(mainActivity.getAccount().getName());
 
         rvUserStock.setLayoutManager(new LinearLayoutManager(getContext()));
+        Account account = mainActivity.getAccount();
         rvUserStock.setAdapter(loadStocksTask.getStockAdapter());
 
         layout.setOnClickListener(v -> mainActivity.makeCurrentFragment(new TrainingsModeFragement()));
