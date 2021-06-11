@@ -14,8 +14,6 @@
     <string name="moneyFormat">%,.2f €</string>
     <string name="accountKey">USER_ACCOUNT</string>
     <string name="accountNameKey">USER_ACCOUNT_NAME</string>
-    <string name="Account_ID">ID des Users(Optional)</string>
     <string name="Account_Name">Name des Users</string>
-    <string name="url">http://de.m.wikipedia.org/wiki/%s_(Tierkreiszeichen)</string>
     <string name="trainingMode">Reset</string>
 </resources>

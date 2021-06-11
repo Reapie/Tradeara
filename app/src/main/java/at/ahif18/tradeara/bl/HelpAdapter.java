@@ -20,15 +20,11 @@ import at.ahif18.tradeara.data.HelpText;
 
 public class HelpAdapter extends RecyclerView.Adapter<HelpViewHolder> {
         private List<HelpText> descriptions = Arrays.asList(
-                new HelpText("Aktienverläufe","Klicken sie auf diesen Container um " +
-                        "auf eine Hilfreiche Seite für Aktien zu kommen",
-                        "https://www.sparkasse.de/themen/wertpapiere-als-" +
-                                "geldanlage/10-tipps-aktienanfaenger.html"),
+                new HelpText("Top/Flop","Diese Seite zeigt ihnen Aktien die eine extrem gute oder extrem schlechte Vergangenheit hatten",
+                        "https://www.onvista.de/aktien/top-flop/"),
 
-                new HelpText("Arten von Aktien","Website für Verschiedene Arten von Aktien",
-                                     "https://www.zinsenvergleich.at/aktie-ist-" +
-                                             "nicht-gleich-aktie-verschiedene-arten-von-" +
-                                             "aktien-im-ueberblick-2966/"),
+                new HelpText("Arten von Aktien","Webseite für das Kennenlernen von verschiedenen Aktien Charts",
+                                     "https://www.xtb.com/de/Ausbildung/arten-von-charts#:~:text=Die%20drei%20bekanntesten%20Chartarten%20sind,%2DCharts%20(Kerzen%2DCharts)"),
 
                 new HelpText("Wie enstehen Aktien",
                         "Einen Artikel von Enstehungen von Aktien sehen",
