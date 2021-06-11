@@ -1,5 +1,7 @@
 package at.ahif18.tradeara.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -10,11 +12,33 @@ import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.bl.StockAdapter;
 
 public class Account {
+    @JsonIgnore
     private MainActivity mainActivity;
-    public static double START_BALANCE = 40000;
+    @JsonIgnore
+    private static double START_BALANCE = 40000;
     private double balance;
     private HashMap<Stock, Integer> stocks;
     private String name;
+
+    public MainActivity getMainActivity() {
+        return mainActivity;
+    }
+
+    public void setMainActivity(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public HashMap<Stock, Integer> getStocks() {
+        return stocks;
+    }
+
+    public void setStocks(HashMap<Stock, Integer> stocks) {
+        this.stocks = stocks;
+    }
 
     public Account(String name, MainActivity mainActivity) {
         this.balance = START_BALANCE;
@@ -49,6 +73,7 @@ public class Account {
         this.name = name;
     }
 
+    @JsonIgnore
     public StockAdapter getStockAdapter() {
         StockAdapter sa = new StockAdapter(mainActivity);
         sa.setStocks(new ArrayList<>(stocks.keySet()));
