@@ -85,7 +85,7 @@ public class AccountFragment extends Fragment {
 
         rvUserStock.setLayoutManager(new LinearLayoutManager(getContext()));
         Account account = mainActivity.getAccount();
-        rvUserStock.setAdapter(loadStocksTask.getStockAdapter());
+        rvUserStock.setAdapter(account.getStockAdapter());
 
         layout.setOnClickListener(v -> mainActivity.makeCurrentFragment(new TrainingsModeFragement()));
 
