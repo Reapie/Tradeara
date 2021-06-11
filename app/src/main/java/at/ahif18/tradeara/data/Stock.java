@@ -3,6 +3,9 @@ package at.ahif18.tradeara.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import at.ahif18.tradeara.bl.StockGetter;
 
 public class Stock implements Parcelable {
@@ -19,6 +22,22 @@ public class Stock implements Parcelable {
         this.symbol = symbol;
         this.price = price;
         this.diff = diff;
+    }
+
+    @JsonCreator
+    public Stock(String dataRaw) {
+        System.out.println(dataRaw);
+        String[] data = dataRaw.split(";");
+        System.out.println(data);
+        this.name = data[0];
+        this.symbol = data[1];
+        this.price = Float.parseFloat(data[2]);
+        this.diff = Float.parseFloat(data[3]);
+    }
+
+    @JsonValue
+    public String toJson() {
+        return String.format("%s;%s;%.2f;%.2f", name, symbol, price, diff);
     }
 
     protected Stock(Parcel in) {
