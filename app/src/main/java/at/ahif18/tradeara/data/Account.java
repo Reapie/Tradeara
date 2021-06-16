@@ -56,7 +56,7 @@ public class Account {
         this.stocks = new HashMap();
         this.name = name;
         this.mainActivity = mainActivity;
-        addStock(new Stock("Test", "TST", 42.0, 69.0), 1);
+        //addStock(new Stock("Test", "TST", 42.0, 69.0), 1);
     }
 
     @JsonCreator
