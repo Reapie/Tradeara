@@ -78,6 +78,7 @@ public class StockManager {
             //ArrayList<yahoofinance.Stock> stockList = StockGetter.getStocks(symbols);
             ArrayList<yahoofinance.Stock> stockList = StockLauncher.getStocks(symbols);
 
+
             stockList.forEach(stock -> {
                 try {
                     stocks.add(new Stock(stock.getName(), stock.getSymbol(), stock.getQuote().getPrice().doubleValue(), (1 - stock.getQuote().getPrice().doubleValue() / stock.getHistory().get(0).getClose().doubleValue()) * 100));

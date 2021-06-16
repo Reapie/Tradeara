@@ -29,6 +29,7 @@ public class BuySellFragment extends BottomSheetDialogFragment {
 
     private String stockName;
     private String stockSymbol;
+    private String stockPrice;
 
     private Button btnBuy;
     private Button btnSell;
@@ -59,6 +60,7 @@ public class BuySellFragment extends BottomSheetDialogFragment {
 
         stockName = stock.getName();
         stockSymbol = stock.getSymbol();
+        stockPrice = stock.getFormattedPrice();
     }
 
     @Override
@@ -69,11 +71,13 @@ public class BuySellFragment extends BottomSheetDialogFragment {
 
         TextView tvStockName = view.findViewById(R.id.tvStockName);
         TextView tvStockSymbol = view.findViewById(R.id.tvStockSymbol);
+        TextView tvStockPrice = view.findViewById(R.id.tvStockPrice);
 
         tvStockName.setSelected(true);
 
         tvStockName.setText(stockName);
         tvStockSymbol.setText(stockSymbol);
+        tvStockPrice.setText(stockPrice);
 
         btnBuy = view.findViewById(R.id.btnBuy);
         btnSell = view.findViewById(R.id.btnSell);
