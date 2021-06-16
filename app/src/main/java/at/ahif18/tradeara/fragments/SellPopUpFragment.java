@@ -134,6 +134,7 @@ public class SellPopUpFragment extends DialogFragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if(!changeThroughEditText){
                     etSellAmount.setText(progress + "");
+                    sbValue = Integer.parseInt(etSellAmount.getText().toString());
                 }
             }
 
