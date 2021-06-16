@@ -1,26 +1,18 @@
 package at.ahif18.tradeara.fragments;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
-
-import java.sql.SQLOutput;
 
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
@@ -40,10 +32,10 @@ public class AccountFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     private RecyclerView rvUserStock;
-    private RelativeLayout User;
     private static MainActivity mainActivity;
     private LoadStocksTask loadStocksTask;
-    private String name = "";
+    private TextView tvtraining;
+    private RelativeLayout layout;
 
     public AccountFragment(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -52,6 +44,7 @@ public class AccountFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
 
 
     // TODO: Rename and change types and number of parameters
@@ -81,8 +74,10 @@ public class AccountFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_account, container, false);
+        tvtraining = view.findViewById(R.id.tvTraining);
 
         rvUserStock = view.findViewById(R.id.rvUserStock);
+        layout = view.findViewById(R.id.RelativeTraining);
 
         rvUserStock.setHasFixedSize(true);
         TextView tvAccountName = view.findViewById(R.id.tvName);
@@ -92,42 +87,13 @@ public class AccountFragment extends Fragment {
         Account account = mainActivity.getAccount();
         rvUserStock.setAdapter(account.getStockAdapter());
 
-        User = view.findViewById(R.id.RelativeID);
-
-        User.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-              Account acc = new Account((String) tvAccountName.getText(), mainActivity);
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity.getBaseContext());
-                builder.setTitle("Title");
-
-// Set up the input
-                final EditText input = new EditText(mainActivity.getBaseContext());
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-                input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                builder.setView(input);
-
-// Set up the buttons
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        name = input.getText().toString();
-                        acc.setName(name);
-                        tvAccountName.setText(name);
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                builder.show();
-
-            }
+        // Account reset
+        // TODO: Update fragment content somehow
+        // Maybe switch to other fragment and then back?
+        layout.setOnClickListener(v -> {
+            mainActivity.getPrefManager().reset();
         });
+
         return view;
 
     }

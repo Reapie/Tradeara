@@ -35,6 +35,13 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
         stocksAll = new ArrayList<>(stocks);
     }
 
+    public StockAdapter(MainActivity mainActivity, boolean shimmer) {
+        this.mainActivity = mainActivity;
+        stocks = new ArrayList<>();
+        stocksAll = new ArrayList<>(stocks);
+        this.showShimmer = shimmer;
+    }
+
 
     //private List<Stock> stocks = StockGetter.getStocks("INTC","TSLA");
     //float price = stocks.get(0).getQuote().getPrice() Preis kann andere währung haben
@@ -67,11 +74,11 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
             holder.getTvDiffStock().setBackground(null);
 
             Stock stock = stocks.get(position);
-            holder.setStock(stocks.get(position));
+            holder.setStock(stock);
             holder.getTvNameStock().setText(stock.getName());
             holder.getTvPriceStock().setText(stock.getFormattedPrice());
             holder.getTvSymbolStock().setText(stock.getSymbol());
-            holder.getTvDiffStock().setText(String.format("%s", stock.getDiff()));
+            holder.getTvDiffStock().setText(stock.getFormattedPercent());
             holder.getTvDiffStock().setTextColor(stock.getDiff() < 0 ? Color.RED : Color.GREEN);
         }
     }

@@ -16,13 +16,13 @@ import java.io.IOException;
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
 import at.ahif18.tradeara.data.Account;
+import at.ahif18.tradeara.data.Stock;
 
 public class PrefManager {
 
     private final Context ctx;
     private final SharedPreferences sharedPreferences;
     private final String ACCOUNT_KEY;
-    private final String ACCOUNT_NAME_KEY;
     private final MainActivity main;
     private final ObjectMapper mapper = new ObjectMapper()
 ;
@@ -31,7 +31,6 @@ public class PrefManager {
     public PrefManager(Context ctx, MainActivity main) {
         this.ctx = ctx;
         ACCOUNT_KEY = this.ctx.getString(R.string.accountKey);
-        ACCOUNT_NAME_KEY = this.ctx.getString(R.string.accountNameKey);
         sharedPreferences = this.ctx.getSharedPreferences("Account", Context.MODE_PRIVATE);
         this.main = main;
     }
@@ -46,8 +45,7 @@ public class PrefManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        name = sharedPreferences.getString(ACCOUNT_NAME_KEY, "none");
-        if (jsonS.equals("{}") || name.equals("none") || acc == null) {
+        if (jsonS.equals("{}") || acc == null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
             builder.setTitle("Name");
             // Set up the input
@@ -61,7 +59,6 @@ public class PrefManager {
                 String name = input.getText().toString();
                 Account acc1 = new Account(name, main);
                 SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
-                prefsEditor.putString(ACCOUNT_NAME_KEY, name);
                 prefsEditor.apply();
                 dialog.cancel();
                 setAccount(acc1);
@@ -71,7 +68,6 @@ public class PrefManager {
                 String name = "none";
                 Account acc12 = new Account(name, main);
                 SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
-                prefsEditor.putString(ACCOUNT_NAME_KEY, name);
                 prefsEditor.apply();
                 dialog.cancel();
                 setAccount(acc12);
@@ -94,8 +90,15 @@ public class PrefManager {
         }
         System.out.println(json);
         prefsEditor.putString(ACCOUNT_KEY, json);
-        prefsEditor.putString(ACCOUNT_NAME_KEY, acc.getName());
         prefsEditor.apply();
+    }
+
+    public void reset() {
+        // reset onclick
+        SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
+        prefsEditor.putString(ACCOUNT_KEY, "");
+        prefsEditor.apply();
+        getOrCreate();
     }
 
 }

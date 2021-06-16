@@ -5,9 +5,13 @@ import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -15,13 +19,10 @@ import org.w3c.dom.Text;
 
 import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
+import at.ahif18.tradeara.data.Account;
 import at.ahif18.tradeara.data.Stock;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BuyPopUpFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class BuyPopUpFragment extends DialogFragment {
 
     private static final String TAG = "BuyPopUpFragment";
@@ -30,12 +31,15 @@ public class BuyPopUpFragment extends DialogFragment {
     private Stock stock;
     private String stockName;
     private String stockSymbol;
+    private boolean changeThroughEditText;
 
     private SeekBar sb;
     private MainActivity mainActivity;
+    private int sbValue;
 
     public BuyPopUpFragment(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
+        sbValue = 1;
     }
 
 
@@ -66,17 +70,68 @@ public class BuyPopUpFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_buy_pop_up, container, false);
         TextView tvBuyStockName = view.findViewById(R.id.tvBuyStockName);
         TextView tvBuyStockSymbol = view.findViewById(R.id.tvBuyStockSymbol);
-        TextView tvBuyAmount = view.findViewById(R.id.tvBuyAmount);
+        EditText etBuyAmount = view.findViewById(R.id.etBuyAmount);
         TextView tvBuyStockPrice = view.findViewById(R.id.tvBuyStockPrice);
+        Button btnBuyBuy = view.findViewById(R.id.btnBuyBuy);
+        Button btnBuyCancel = view.findViewById(R.id.btnBuyCancel);
 
-        tvBuyAmount.setText("0");
+        btnBuyCancel.setOnClickListener(v -> dismiss());
+
+        etBuyAmount.setText("1");
 
         sb = view.findViewById(R.id.sbBuy);
-        sb.setMax((int)(mainActivity.getAccount().getBalance() / stock.getPrice()));
+        int max = (int)(mainActivity.getAccount().getBalance() / stock.getPrice());
+        sb.setMax(max);
+        sb.setMin(1);
+        changeThroughEditText = false;
+
+        if(stock.getPrice() > stock.getPrice() * max){
+            etBuyAmount.setEnabled(false);
+        }else{
+            etBuyAmount.setEnabled(true);
+        }
+
+        etBuyAmount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                    changeThroughEditText = true;
+                    try{
+                        if(etBuyAmount.getText().toString().equals("")){
+                            sb.setProgress(1);
+                            sbValue = 1;
+                        }else if(Integer.parseInt(etBuyAmount.getText().toString()) > max){
+                            sb.setProgress(max);
+                            sbValue = max;
+                        }
+                        else{
+                            sb.setProgress(Integer.parseInt(etBuyAmount.getText().toString()));
+                            sbValue = Integer.parseInt(etBuyAmount.getText().toString());
+                        }
+                    }catch (Exception e){
+                        sb.setProgress(1);
+                        sbValue = 1;
+                    }
+                    changeThroughEditText = false;
+            }
+        });
+
+
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tvBuyAmount.setText(progress + "");
+                if(!changeThroughEditText){
+                    etBuyAmount.setText(progress + "");
+                    sbValue = Integer.parseInt(etBuyAmount.getText().toString());
+                }
             }
 
             @Override
@@ -90,10 +145,20 @@ public class BuyPopUpFragment extends DialogFragment {
             }
         });
 
+        btnBuyBuy.setOnClickListener(v -> {
+                Account account = mainActivity.getAccount();
+                account.addStock(stock, sbValue);
+                account.setBalance(account.getBalance() - (stock.getPrice() * sbValue));
+                mainActivity.setAccount(account);
+                dismiss();
+        });
+
         tvBuyStockPrice.setText(stock.getFormattedPrice());
         tvBuyStockName.setText(stockName);
         tvBuyStockSymbol.setText(stockSymbol);
         tvBuyStockName.setSelected(true);
+
+
 
         return view;
     }
