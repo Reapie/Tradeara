@@ -30,17 +30,9 @@ public class Account {
     @JsonProperty("stocks")
     private HashMap<Stock, Integer> stocks;
 
-
-    public MainActivity getMainActivity() {
-        return mainActivity;
-    }
-
-    public void setMainActivity(MainActivity mainActivity) {
-        this.mainActivity = mainActivity;
-    }
-
     public void setBalance(double balance) {
         this.balance = balance;
+        saveData();
     }
 
     public HashMap<Stock, Integer> getStocks() {
@@ -59,6 +51,10 @@ public class Account {
         //addStock(new Stock("Test", "TST", 42.0, 69.0), 1);
     }
 
+    public void setMainActivity(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
+    }
+
     @JsonCreator
     public Account(@JsonProperty("balance")double balance,
                    @JsonProperty("name")String name,
@@ -74,16 +70,24 @@ public class Account {
 
     public void addStock(Stock stock, int amount){
         stocks.put(stock, stocks.get(stock) == null ? amount : stocks.get(stock) + amount);
+        saveData();
     }
 
     public void removeStock(Stock stock, int amount){
         if(stocks.containsKey(stock) && stocks.get(stock) - amount > 0) {
             stocks.replace(stock, stocks.get(stock) - amount);
+            saveData();
         }else if(stocks.get(stock) - amount == 0){
             stocks.remove(stock);
+            saveData();
         }else{
             System.out.println("Error");
         }
+    }
+
+    private void saveData() {
+        this.mainActivity.getPrefManager().setAccount(this);
+        this.mainActivity.refreshBalance();
     }
 
     public String getName() {
@@ -97,6 +101,7 @@ public class Account {
     @JsonIgnore
     public StockAdapter getStockAdapter() {
         StockAdapter sa = new StockAdapter(mainActivity, false);
+        System.out.println(stocks.keySet().toString());
         sa.setStocks(new ArrayList<>(stocks.keySet()));
         return sa;
     }

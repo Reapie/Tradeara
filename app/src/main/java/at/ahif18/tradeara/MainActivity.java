@@ -117,7 +117,6 @@ public class MainActivity extends AppCompatActivity{
 
         prefManager = new PrefManager(this, this);
         prefManager.getOrCreate();
-
     }
 
     public PrefManager getPrefManager() {
@@ -126,6 +125,7 @@ public class MainActivity extends AppCompatActivity{
 
     public void setAccount(Account acc) {
         this.account = acc;
+        this.account.setMainActivity(this);
         refreshBalance();   // ALWAYS CALL WHEN BALANCE CHANGES
     }
 

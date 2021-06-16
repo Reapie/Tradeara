@@ -74,7 +74,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
             holder.getTvDiffStock().setBackground(null);
 
             Stock stock = stocks.get(position);
-            holder.setStock(stocks.get(position));
+            holder.setStock(stock);
             holder.getTvNameStock().setText(stock.getName());
             holder.getTvPriceStock().setText(stock.getFormattedPrice());
             holder.getTvSymbolStock().setText(stock.getSymbol());
