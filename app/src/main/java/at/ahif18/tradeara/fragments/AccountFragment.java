@@ -87,7 +87,8 @@ public class AccountFragment extends Fragment {
         Account account = mainActivity.getAccount();
         rvUserStock.setAdapter(account.getStockAdapter());
 
-        layout.setOnClickListener(v -> mainActivity.makeCurrentFragment(new TrainingsModeFragement()));
+        layout.setOnClickListener(v -> {
+        });
 
         return view;
 
