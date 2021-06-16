@@ -86,9 +86,11 @@ public class BuySellFragment extends BottomSheetDialogFragment {
         });
 
         btnSell.setOnClickListener(v -> {
-            SellPopUpFragment sellPopUpFragment = SellPopUpFragment.newInstance(stock);
-            sellPopUpFragment.show(getFragmentManager(), sellPopUpFragment.getTag());
-            StockManager.getInstance().increase(stockName);
+            if(mainActivity.getAccount().getStocks().get(stock) != null){
+                SellPopUpFragment sellPopUpFragment = SellPopUpFragment.newInstance(stock, mainActivity);
+                sellPopUpFragment.show(getFragmentManager(), sellPopUpFragment.getTag());
+                StockManager.getInstance().increase(stockName);
+            }
         });
 
         return view;
