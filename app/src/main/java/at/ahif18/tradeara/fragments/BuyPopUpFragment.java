@@ -104,16 +104,21 @@ public class BuyPopUpFragment extends DialogFragment {
             @Override
             public void afterTextChanged(Editable s) {
                     changeThroughEditText = true;
-                    if(etBuyAmount.getText().toString().equals("")){
-                        sb.setProgress(1);
-                        sbValue = 1;
-                    }else if(Integer.parseInt(etBuyAmount.getText().toString()) > max){
-                        sb.setProgress(max);
-                        sbValue = max;
-                    }
-                    else{
+                    try{
+                        if(etBuyAmount.getText().toString().equals("")){
+                            sb.setProgress(1);
+                            sbValue = 1;
+                        }else if(Integer.parseInt(etBuyAmount.getText().toString()) > max){
+                            sb.setProgress(max);
+                            sbValue = max;
+                        }
+                        else{
                             sb.setProgress(Integer.parseInt(etBuyAmount.getText().toString()));
                             sbValue = Integer.parseInt(etBuyAmount.getText().toString());
+                        }
+                    }catch (Exception e){
+                        sb.setProgress(1);
+                        sbValue = 1;
                     }
                     changeThroughEditText = false;
             }
