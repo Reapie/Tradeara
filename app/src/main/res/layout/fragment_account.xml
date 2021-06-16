@@ -11,17 +11,17 @@
         android:id="@+id/RelativeID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corners_account"
         android:layout_marginLeft="5sp"
         android:layout_marginTop="5sp"
-        android:layout_marginRight="5sp">
+        android:layout_marginRight="5sp"
+        android:background="@drawable/rounded_corners_account">
 
         <TextView
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
             android:text="@string/Account_Name"
             android:textSize="30sp" />
 
@@ -45,28 +45,11 @@
             android:src="@drawable/ic_account" />
 
     </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/RelativeTraining"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corners_training"
-        android:layout_margin="5sp"
-        android:layout_below="@id/RelativeID">
-        <TextView
-            android:id="@+id/tvTraining"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="20dp"
-            android:text="@string/trainingMode"
-            android:textSize="20sp" />
-    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvUserStock"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/RelativeTraining"
+        android:layout_below="@id/RelativeID"
         android:background="@color/white" />
 </RelativeLayout>
