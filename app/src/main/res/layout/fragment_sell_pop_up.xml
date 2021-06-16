@@ -1,14 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/rounded_corners"
+    android:backgroundTint="#FFFFFF"
+    android:padding="20sp"
     tools:context=".fragments.SellPopUpFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tvSellStockName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test"
+        android:textColor="#000000"
+        android:textSize="25sp" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tvSellStockSymbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/tvSellStockName"
+        android:text="Test"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/tvSellStockPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvSellStockName"
+        android:text="Text"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:id="@+id/rlInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvSellStockPrice"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_corners"
+        android:backgroundTint="#F8F5F5"
+        android:elevation="2dp"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/tvSellHoldingStocksAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Test"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/tvSellHoldingStocksValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:text="Test"
+            android:textColor="#000000" />
+
+    </RelativeLayout>
+
+    <SeekBar
+        android:id="@+id/sbSellAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlInfo"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#000000"
+        android:progressBackgroundTint="#000000" />
+
+    <EditText
+        android:id="@+id/etSellAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sbSellAmount"
+        android:ems="10"
+        android:gravity="right"
+        android:inputType="textPersonName"
+        android:text="Text"
+        android:textColor="#000000" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etSellAmount"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSellSell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corners"
+            android:backgroundTint="#000000"
+            android:text="@string/sell" />
+
+        <Button
+            android:id="@+id/btnSellCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corners"
+            android:backgroundTint="#000000"
+            android:text="@android:string/cancel" />
+    </LinearLayout>
+</RelativeLayout>

@@ -100,4 +100,6 @@ public class Stock implements Parcelable {
         dest.writeDouble(price);
         dest.writeDouble(diff);
     }
+
+
 }

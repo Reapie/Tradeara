@@ -75,11 +75,12 @@ public class BuyPopUpFragment extends DialogFragment {
 
         btnBuyCancel.setOnClickListener(v -> dismiss());
 
-        etBuyAmount.setText("0");
+        etBuyAmount.setText("1");
 
         sb = view.findViewById(R.id.sbBuy);
         int max = (int)(mainActivity.getAccount().getBalance() / stock.getPrice());
         sb.setMax(max);
+        sb.setMin(1);
         changeThroughEditText = false;
 
         if(stock.getPrice() > stock.getPrice() * max){
