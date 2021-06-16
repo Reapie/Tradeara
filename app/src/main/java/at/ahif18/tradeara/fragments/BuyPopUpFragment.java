@@ -35,9 +35,11 @@ public class BuyPopUpFragment extends DialogFragment {
 
     private SeekBar sb;
     private MainActivity mainActivity;
+    private int sbValue;
 
     public BuyPopUpFragment(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
+        sbValue = 1;
     }
 
 
@@ -102,13 +104,23 @@ public class BuyPopUpFragment extends DialogFragment {
             @Override
             public void afterTextChanged(Editable s) {
                     changeThroughEditText = true;
-                    if(etBuyAmount.getText().toString().equals("")){
-                        sb.setProgress(0);
-                    }else{
+                    try{
+                        if(etBuyAmount.getText().toString().equals("")){
+                            sb.setProgress(1);
+                            sbValue = 1;
+                        }else if(Integer.parseInt(etBuyAmount.getText().toString()) > max){
+                            sb.setProgress(max);
+                            sbValue = max;
+                        }
+                        else{
                             sb.setProgress(Integer.parseInt(etBuyAmount.getText().toString()));
+                            sbValue = Integer.parseInt(etBuyAmount.getText().toString());
+                        }
+                    }catch (Exception e){
+                        sb.setProgress(1);
+                        sbValue = 1;
                     }
                     changeThroughEditText = false;
-
             }
         });
 
@@ -118,6 +130,7 @@ public class BuyPopUpFragment extends DialogFragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if(!changeThroughEditText){
                     etBuyAmount.setText(progress + "");
+                    sbValue = Integer.parseInt(etBuyAmount.getText().toString());
                 }
             }
 
@@ -134,8 +147,8 @@ public class BuyPopUpFragment extends DialogFragment {
 
         btnBuyBuy.setOnClickListener(v -> {
                 Account account = mainActivity.getAccount();
-                account.addStock(stock, Integer.parseInt(etBuyAmount.getText().toString()));
-                account.setBalance(account.getBalance() - (stock.getPrice() * Integer.parseInt(etBuyAmount.getText().toString())));
+                account.addStock(stock, sbValue);
+                account.setBalance(account.getBalance() - (stock.getPrice() * sbValue));
                 mainActivity.setAccount(account);
                 dismiss();
         });

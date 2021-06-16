@@ -114,15 +114,20 @@ public class SellPopUpFragment extends DialogFragment {
             @Override
             public void afterTextChanged(Editable s) {
                 changeThroughEditText = true;
-                if(etSellAmount.getText().toString().equals("")){
+                try{
+                    if(etSellAmount.getText().toString().equals("")){
+                        sb.setProgress(1);
+                        sbValue = 1;
+                    }else if(Integer.parseInt(etSellAmount.getText().toString()) > max){
+                        sb.setProgress(max);
+                        sbValue = max;
+                    }else{
+                        sb.setProgress(Integer.parseInt(etSellAmount.getText().toString()));
+                        sbValue = Integer.parseInt(etSellAmount.getText().toString());
+                    }
+                }catch (Exception e){
                     sb.setProgress(1);
                     sbValue = 1;
-                }else if(Integer.parseInt(etSellAmount.getText().toString()) > max){
-                    sb.setProgress(max);
-                    sbValue = max;
-                }else{
-                    sb.setProgress(Integer.parseInt(etSellAmount.getText().toString()));
-                    sbValue = Integer.parseInt(etSellAmount.getText().toString());
                 }
                 changeThroughEditText = false;
 
@@ -134,6 +139,7 @@ public class SellPopUpFragment extends DialogFragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if(!changeThroughEditText){
                     etSellAmount.setText(progress + "");
+                    sbValue = Integer.parseInt(etSellAmount.getText().toString());
                 }
             }
 
