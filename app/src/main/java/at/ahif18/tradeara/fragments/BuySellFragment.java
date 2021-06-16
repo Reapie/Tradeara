@@ -1,5 +1,7 @@
 package at.ahif18.tradeara.fragments;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -77,6 +79,7 @@ public class BuySellFragment extends BottomSheetDialogFragment {
         btnSell = view.findViewById(R.id.btnSell);
 
         btnBuy.setOnClickListener(v -> {
+            btnBuy.setClickable(true);
             BuyPopUpFragment buyPopUpFragment = BuyPopUpFragment.newInstance(stock, mainActivity);
             buyPopUpFragment.show(getFragmentManager(), buyPopUpFragment.getTag());
             StockManager.getInstance().increase(stock.getName());
