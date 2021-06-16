@@ -35,6 +35,13 @@ public class StockAdapter extends RecyclerView.Adapter<StockHolder> {
         stocksAll = new ArrayList<>(stocks);
     }
 
+    public StockAdapter(MainActivity mainActivity, boolean shimmer) {
+        this.mainActivity = mainActivity;
+        stocks = new ArrayList<>();
+        stocksAll = new ArrayList<>(stocks);
+        this.showShimmer = shimmer;
+    }
+
 
     //private List<Stock> stocks = StockGetter.getStocks("INTC","TSLA");
     //float price = stocks.get(0).getQuote().getPrice() Preis kann andere währung haben

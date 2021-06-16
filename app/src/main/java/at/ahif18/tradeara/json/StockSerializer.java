@@ -20,6 +20,8 @@ public class StockSerializer extends JsonSerializer<Stock> {
 
         StringWriter writer = new StringWriter();
         mapper.writeValue(writer, value);
-        gen.writeFieldName(writer.toString());
+        String content = writer.toString().replace("\"", "");
+        System.out.println(content);
+        gen.writeFieldName(content);
     }
 }

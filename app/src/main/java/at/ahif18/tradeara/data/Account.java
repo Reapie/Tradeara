@@ -96,7 +96,7 @@ public class Account {
 
     @JsonIgnore
     public StockAdapter getStockAdapter() {
-        StockAdapter sa = new StockAdapter(mainActivity);
+        StockAdapter sa = new StockAdapter(mainActivity, false);
         sa.setStocks(new ArrayList<>(stocks.keySet()));
         return sa;
     }

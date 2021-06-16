@@ -33,8 +33,8 @@ public class Stock implements Parcelable {
         System.out.println(Arrays.toString(data));
         this.name = data[0];
         this.symbol = data[1];
-        this.price = Float.parseFloat(data[2].replace("\"", ""));
-        this.diff = Float.parseFloat(data[3].replace("\"", ""));
+        this.price = Float.parseFloat(data[2]);
+        this.diff = Float.parseFloat(data[3]);
     }
 
     @JsonValue

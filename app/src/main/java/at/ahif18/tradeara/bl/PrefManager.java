@@ -23,7 +23,6 @@ public class PrefManager {
     private final Context ctx;
     private final SharedPreferences sharedPreferences;
     private final String ACCOUNT_KEY;
-    private final String ACCOUNT_STOCKS_KEY;
     private final MainActivity main;
     private final ObjectMapper mapper = new ObjectMapper()
 ;
@@ -32,7 +31,6 @@ public class PrefManager {
     public PrefManager(Context ctx, MainActivity main) {
         this.ctx = ctx;
         ACCOUNT_KEY = this.ctx.getString(R.string.accountKey);
-        ACCOUNT_STOCKS_KEY = this.ctx.getString(R.string.accountStockKey);
         sharedPreferences = this.ctx.getSharedPreferences("Account", Context.MODE_PRIVATE);
         this.main = main;
     }
