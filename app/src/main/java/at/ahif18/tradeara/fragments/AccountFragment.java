@@ -1,5 +1,6 @@
 package at.ahif18.tradeara.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.common.util.JsonUtils;
 
 import org.w3c.dom.Text;
 
@@ -34,8 +38,8 @@ public class AccountFragment extends Fragment {
     private RecyclerView rvUserStock;
     private static MainActivity mainActivity;
     private LoadStocksTask loadStocksTask;
-    private TextView tvtraining;
     private RelativeLayout layout;
+
 
     public AccountFragment(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -69,15 +73,15 @@ public class AccountFragment extends Fragment {
         loadStocksTask.execute();
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_account, container, false);
-        tvtraining = view.findViewById(R.id.tvTraining);
 
         rvUserStock = view.findViewById(R.id.rvUserStock);
-        layout = view.findViewById(R.id.RelativeTraining);
+        layout = view.findViewById(R.id.RelativeID);
 
         rvUserStock.setHasFixedSize(true);
         TextView tvAccountName = view.findViewById(R.id.tvName);
@@ -92,7 +96,12 @@ public class AccountFragment extends Fragment {
         // Maybe switch to other fragment and then back?
         layout.setOnClickListener(v -> {
             mainActivity.getPrefManager().reset();
+            Toast myToast = Toast.makeText(mainActivity.getApplicationContext(),
+                    "The new username will be shown after " +
+                    "updating the site  ", Toast.LENGTH_LONG);
+            myToast.show();
         });
+
 
         return view;
 

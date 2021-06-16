@@ -100,5 +100,9 @@ public class PrefManager {
         prefsEditor.apply();
         getOrCreate();
     }
+    public String getAccount(){
+        String jsonS = sharedPreferences.getString(ACCOUNT_KEY, "");
+        return jsonS;
+    }
 
 }
