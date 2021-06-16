@@ -87,7 +87,11 @@ public class AccountFragment extends Fragment {
         Account account = mainActivity.getAccount();
         rvUserStock.setAdapter(account.getStockAdapter());
 
+        // Account reset
+        // TODO: Update fragment content somehow
+        // Maybe switch to other fragment and then back?
         layout.setOnClickListener(v -> {
+            mainActivity.getPrefManager().reset();
         });
 
         return view;

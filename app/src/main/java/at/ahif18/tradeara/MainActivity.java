@@ -120,6 +120,10 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
+    public PrefManager getPrefManager() {
+        return this.prefManager;
+    }
+
     public void setAccount(Account acc) {
         this.account = acc;
         refreshBalance();   // ALWAYS CALL WHEN BALANCE CHANGES
