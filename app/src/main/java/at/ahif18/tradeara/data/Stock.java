@@ -6,6 +6,8 @@ import android.os.Parcelable;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import java.util.Arrays;
+
 import at.ahif18.tradeara.bl.StockGetter;
 
 public class Stock implements Parcelable {
@@ -28,11 +30,11 @@ public class Stock implements Parcelable {
     public Stock(String dataRaw) {
         System.out.println(dataRaw);
         String[] data = dataRaw.split(";");
-        System.out.println(data);
+        System.out.println(Arrays.toString(data));
         this.name = data[0];
         this.symbol = data[1];
-        this.price = Float.parseFloat(data[2]);
-        this.diff = Float.parseFloat(data[3]);
+        this.price = Float.parseFloat(data[2].replace("\"", ""));
+        this.diff = Float.parseFloat(data[3].replace("\"", ""));
     }
 
     @JsonValue

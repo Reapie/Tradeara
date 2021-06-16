@@ -95,4 +95,12 @@ public class PrefManager {
         prefsEditor.apply();
     }
 
+    public void reset() {
+        // reset onclick
+        SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
+        prefsEditor.putString(ACCOUNT_KEY, "");
+        prefsEditor.apply();
+        getOrCreate();
+    }
+
 }
