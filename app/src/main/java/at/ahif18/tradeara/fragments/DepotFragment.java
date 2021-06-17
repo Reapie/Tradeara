@@ -18,8 +18,12 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
 import java.util.ArrayList;
+import java.util.Map;
 
+import at.ahif18.tradeara.MainActivity;
 import at.ahif18.tradeara.R;
+import at.ahif18.tradeara.data.Account;
+import at.ahif18.tradeara.data.Stock;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,23 +33,25 @@ import at.ahif18.tradeara.R;
 public class DepotFragment extends Fragment {
 
     private static final String TAG = "DepotFragment";
-    private float[] yData = {40.0f, 15.0f, 65.0f};
-    private String[] xData = {"SMN", "DVD", "MXN"};
+    private float[] yData = {};
+    private String[] xData = {};
     private PieChart pieChart;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private MainActivity mainActivity;
+
     private String mParam1;
     private String mParam2;
 
-    public DepotFragment() {
-        // Required empty public constructor
+    public DepotFragment(MainActivity main) {
+        this.mainActivity = main;
     }
 
 
-    public static DepotFragment newInstance(String param1, String param2) {
-        DepotFragment fragment = new DepotFragment();
+    public static DepotFragment newInstance(String param1, String param2, MainActivity mainActivity) {
+        DepotFragment fragment = new DepotFragment(mainActivity);
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -108,6 +114,4 @@ public class DepotFragment extends Fragment {
 
         pieChart.invalidate();
     }
-
-
 }
