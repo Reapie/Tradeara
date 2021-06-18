@@ -192,4 +192,15 @@ public class StockManager {
     public boolean isHomeStockAdapterSet() {
         return homeStockAdapterSet;
     }
+
+    public double getCurrentPrice(Stock stock) {
+        double price = 0;
+        for (Stock s : stocks) {
+            if  (stock.getSymbol().equals(s.getSymbol())) {
+                price = s.getPrice();
+                break;
+            }
+        }
+        return price;
+    }
 }

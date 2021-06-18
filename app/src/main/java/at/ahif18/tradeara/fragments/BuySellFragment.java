@@ -60,6 +60,9 @@ public class BuySellFragment extends BottomSheetDialogFragment {
 
         stockName = stock.getName();
         stockSymbol = stock.getSymbol();
+        if (mainActivity.getAccount().getStocks().containsKey(stock)) {
+            stock.setPrice(StockManager.getInstance().getCurrentPrice(stock));
+        }
         stockPrice = stock.getFormattedPrice();
     }
 
