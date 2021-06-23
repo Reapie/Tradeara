@@ -158,7 +158,11 @@ public class SellPopUpFragment extends DialogFragment {
             account.removeStock(stock, sbValue);
             account.setBalance(account.getBalance() + (stock.getPrice() * sbValue));
             mainActivity.setAccount(account);
+            if(mainActivity.currentActiveFragment().getClass() != HomeFragment.class){
+                mainActivity.onBackPressed();
+            }
             dismiss();
+
         });
 
         return view;

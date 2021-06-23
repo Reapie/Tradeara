@@ -97,7 +97,9 @@ public class BuySellFragment extends BottomSheetDialogFragment {
                 SellPopUpFragment sellPopUpFragment = SellPopUpFragment.newInstance(stock, mainActivity);
                 sellPopUpFragment.show(getFragmentManager(), sellPopUpFragment.getTag());
                 StockManager.getInstance().increase(stockName);
+                dismiss();
             }
+
         });
 
         return view;

@@ -96,10 +96,6 @@ public class AccountFragment extends Fragment {
         // Maybe switch to other fragment and then back?
         layout.setOnClickListener(v -> {
             mainActivity.getPrefManager().reset();
-            Toast myToast = Toast.makeText(mainActivity.getApplicationContext(),
-                    "The new username will be shown after " +
-                    "updating the site  ", Toast.LENGTH_LONG);
-            myToast.show();
             mainActivity.onBackPressed(); // go back to main menu!
         });
 
