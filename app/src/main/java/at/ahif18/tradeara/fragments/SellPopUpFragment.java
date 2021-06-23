@@ -70,7 +70,7 @@ public class SellPopUpFragment extends DialogFragment {
 
 
         TextView tvSellStockName = view.findViewById(R.id.tvSellStockName);
-        TextView tvSellStockSymbol = view.findViewById(R.id.tvSellStockName);
+        TextView tvSellStockSymbol = view.findViewById(R.id.tvSellStockSymbol);
         TextView tvSellHoldingStocksAmount = view.findViewById(R.id.tvSellHoldingStocksAmount);
         TextView tvSellHoldingStocksValue = view.findViewById(R.id.tvSellHoldingStocksValue);
         EditText etSellAmount = view.findViewById(R.id.etSellAmount);
