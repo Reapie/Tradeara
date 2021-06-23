@@ -20,17 +20,28 @@ import at.ahif18.tradeara.data.HelpText;
 
 public class HelpAdapter extends RecyclerView.Adapter<HelpViewHolder> {
         private List<HelpText> descriptions = Arrays.asList(
-                new HelpText("Top/Flop","Diese Seite zeigt ihnen Aktien die eine extrem gute oder extrem schlechte Vergangenheit hatten",
-                        "https://www.onvista.de/aktien/top-flop/"),
+
+                new HelpText("Begriffe","Hilfreiche Seite um Begriffe der Aktienwelt schnell zu verstehen",
+                        "https://at.scalable.capital/boerse/boersenlexikon-33-wichtige-begriffe-kurz-erklaert"),
+
+                new HelpText("Tipps zum Handeln mit Aktien",
+                        "Webseite von finanzen.net für Tipps mit Handeln von Aktien",
+                        "https://www.finanzen.net/ratgeber/wertpapiere/aktien-kaufen#:~:text=Tipp%201%3A%20Depot%20f%C3%BCr%20den,h%C3%A4ufig%20g%C3%BCnstigeren%20Online%2DBroker%20er%C3%B6ffnen."),
 
                 new HelpText("Arten von Aktien","Webseite für das Kennenlernen von verschiedenen Aktien Charts",
                                      "https://www.xtb.com/de/Ausbildung/arten-von-charts#:~:text=Die%20drei%20bekanntesten%20Chartarten%20sind,%2DCharts%20(Kerzen%2DCharts)"),
 
-                new HelpText("Wie enstehen Aktien",
-                        "Einen Artikel von Enstehungen von Aktien sehen",
-                        "https://www.diekleinanleger.com/folge-21-der-" +
-                                "kurs-einer-aktie-aktien-teil-2/#:~:text=Der%20Kurs%20einer%20" +
-                                "Aktie%20entsteht,der%20Kurs%20auf%2010%20%E2%82%AC.")
+                new HelpText("Aktienzertifikate",
+                        "6 Schritte zum Erstellen einer Aktie",
+                        "https://www.das-aktienregister.ch/aktienbuch/Erstellung-Erwerb-Ubertragung-Aktienzertifikate/"),
+
+                new HelpText("Liquidität einer Aktie",
+                        "Beitrag von der Börse Frankfurt für die" +
+                                "Beschreibung einer Liquidität einer Aktie",
+                        "https://www.boerse-frankfurt.de/wissen/handeln/liquiditaet"),
+
+                new HelpText("Top/Flop","Diese Seite zeigt ihnen Aktien mit einer extrem guten oder schlechten Verlauf",
+                        "https://www.onvista.de/aktien/top-flop/")
 
         );
 

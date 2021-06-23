@@ -100,6 +100,7 @@ public class AccountFragment extends Fragment {
                     "The new username will be shown after " +
                     "updating the site  ", Toast.LENGTH_LONG);
             myToast.show();
+            mainActivity.onBackPressed(); // go back to main menu!
         });
 
 
